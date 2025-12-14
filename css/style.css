@@ -1,0 +1,231 @@
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #FFF5F7;
+    color: #5D4037;
+    font-family: 'Nunito', sans-serif;
+}
+/* header */
+.site-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 40px;
+    background-color: #FFDEE9;
+    background-image: linear-gradient(to bottom, #accbee 0%, #e7f0fd 50%, #FFDEE9 100%);
+    height: auto; 
+    padding: 10px 20px 10px 20px;
+    border-radius: 0px 0px 40px 40px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+.main-nav__list{
+    display: flex;
+    gap: 60px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.main-nav__item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;  
+}
+.main-nav__box-link {
+    background-color: #fdeafd;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; 
+    
+    width: 80%; 
+    height: 30px;
+    padding: 5px 25px; 
+    
+    text-decoration: none;
+    color: #FF69B4;
+    font-weight: bold;
+    font-size: 25px;
+}
+/* Tên và ảnh logo */
+.site-logo{
+    padding: 0;
+    color: #a1026c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.site-logo__image{
+    width: 200px;
+    height: 200px;
+    margin: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+/* Chỉnh thanh điều hướng */
+.main-nav__item--home img{
+    width: 40px;
+    height: auto;
+    margin-right: -10px;
+    padding-bottom: 9px;
+}
+.main-nav__item--video img{
+    width: 30px;
+    height: auto;
+}
+.main-nav__item--picture img{
+    width: 28px;
+    height: auto;
+}
+.video-section__title, .anime-picture-section__title{
+    font-size: 50px;
+    margin: 0px 0px 0px 30px;
+}
+/* main content */
+/* Chỉnh khoảng cách các phần */
+.main-content{
+    margin-top: 60px;
+}
+.video-section{
+    margin-bottom: 60px;
+}
+/* Chỉnh bố cục các nội dung */
+.video-section__list, .anime-picture-section__list{
+    display: flex;
+    gap: 100px;
+    justify-content: space-between;
+    list-style: none;
+    padding-right: 20px;
+}
+.video-section__caption{
+    font-size: 30px;
+    margin-top: 0px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.video-section__player, .anime-picture-section__item img{
+    width: 100%;
+    height: 315px;
+    border-radius: 20px;
+}
+.video-section__item{
+    text-align: center;
+    width: 45%;
+}
+.video-section__item, .anime-picture-section__item{
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+.video-section__title, .anime-picture-section__title{
+    color: #334C66;
+    font-size: 35px;
+    font-weight: bold;
+    text-decoration: underline #334C66 ;
+
+    padding-bottom: 5px;
+    padding-left: 40px;
+    margin: 0px;
+    height: 50px;
+}
+/* footer */
+.site-footer{
+    margin-top: 60px;
+    padding: 40px 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    background: linear-gradient(to top, #ffede9, #f0d7f0);
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 40px;
+    font-size: 20px;
+}
+.contact-infomation__title{
+    color: #880E4F;
+    border-bottom: 2px dashed #FF69B4;
+    padding-bottom: 5px;
+    margin-bottom: 20px;;
+}
+.contact-information_table td {
+    padding: 8px 0;
+    font-size: 18px;
+}
+/* Chỉnh form */
+.feedback__form--fieldset {
+    background-color: rgba(255, 219, 241, 0.918);
+    border: 2px solid #cc92af;
+    border-radius: 20px;
+    padding: 20px;
+}
+.feedback__form--fieldset legend {
+    background-color: #FF69B4;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+.feedback__form--table input{
+    width: 250px;
+    padding: 8px 15px;
+    margin: 3px 0;
+    border: 2px solid #eeaea9;
+    border-radius: 15px;
+}
+.feedback__button button{
+    margin-top: 10px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.feedback__button-submit{
+    background-color: #FF69B4;
+    border-color:#FF69B4;
+    color: white;
+}
+.feedback__button-reset{
+    background-color: #E0E0E0;
+    color: #2b2a2a;
+    border-color:#e4d5d5;
+    margin-left: 20px;
+}
+/* Chỉnh logo link */
+.logo-link{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    align-self: center;
+}
+.logo-link__facebook img{
+    width: 40px; 
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.logo-link__X img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: black;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.logo-link__github img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: rgb(243, 208, 208);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}

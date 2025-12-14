@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website của Việt</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="site-logo">
+      <b>Nguyễn Võ Quốc Việt</b>
+      <img src="./image/thank_you___anime_city_landscape_by_elffyie_dfwv5g5-pre.jpg" alt="logo cá nhân"
+        class="site-logo__image">
+    </div>
+    <nav class="main-nav">
+      <ul class="main-nav__list">
+        <li class="main-nav__item main-nav__item--home">
+          <a href="#" class="main-nav__box-link">
+            <img src="./image/homelogo.png" alt="Trang chủ">
+            <p>Trang chủ</p>
+          </a>
+        </li>
+
+        <li class="main-nav__item main-nav__item--video">
+          <a href="#video-link" class="main-nav__box-link">
+            <img src="./image/videologo.png" alt="Video">
+            <p>Video</p>
+          </a>
+        </li>
+
+        <li class="main-nav__item main-nav__item--picture">
+          <a href="#picture-link" class="main-nav__box-link">
+            <img src="./image/picturelogo.png" alt="Ảnh anime">
+            <p>Ảnh anime</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main class="main-content">
+    <section class="video-section" id="video-link">
+      <h1 class="video-section__title">Video </h1>
+      <ul class="video-section__list">
+        <li class="video-section__item">
+          <p class="video-section__caption">Lữ khách qua thời gian</p>
+          <iframe class="video-section__player" src="https://www.youtube.com/embed/gVyAG3_xtpM?si=pOG36ln6FjMhVj9s"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </li>
+        <li class="video-section__item">
+          <p class="video-section__caption">Lá thư của gió</p>
+          <iframe class="video-section__player" src="https://www.youtube.com/embed/-LYZW0EGav0?si=pQ_y8xrxN59H6l8r"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </li>
+        <li class="video-section__item">
+          <p class=" video-section__caption">Nợ nhau một lời</p>
+          <iframe class = "video-section__player" src="https://www.youtube.com/embed/p-O9FGKAMug?si=Csu9xHuruUQQtj6p"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </li>
+      </ul>
+    </section>
+    <section class="anime-picture-section" id="picture-link">
+      <h1 class="anime-picture-section__title">Ảnh anime đẹp </h1>
+      <ul class="anime-picture-section__list">
+        <li class="anime-picture-section__item">
+          <img src="./image/anh_anime/kato_megumi.png" alt="Kato Megumi">
+        </li>
+        <li class="anime-picture-section__item">
+          <img src="./image/anh_anime/fantasy_girl.jpg" alt="Fantasy Girl">
+        </li>
+        <li class="anime-picture-section__item">
+          <img src="./image/anh_anime/violet_evergarden.jpg" alt="Violet">
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="contact-infomation">
+      <h2 class="contact-infomation__title">Thông tin liên hệ:</h2>
+      <table class="contact-information_table">
+        <tr class="contac-information__email">
+          <td><i>viet.nvq.66cntt@ntu.edu.vn</i></td>
+        </tr>
+        <tr class="contac-information__phone-number">
+          <td><i>0935802161</i></td>
+        </tr>
+      </table>
+    </div>
+    <div class="logo-link">
+      <a href="https://www.facebook.com/qviet.nv" class="logo-link__facebook">
+        <img src="./image/Facebook_Logo_(2019).png" alt="facebook logo">
+      </a>
+      <a href="https://x.com/QVittee" class="logo-link__X">
+        <img src="./image/twitter-x-logo-png_seeklogo-492396.png" alt="twitter logo">
+      </a>
+      <a href="https://github.com/NguyenVoQuocViet" class="logo-link__github">
+        <img src="./image/github-logo.png" alt="github logo">
+      </a>
+    </div>
+    <div class="feedback">
+      <form action="" class="feedback__form">
+        <fieldset class="feedback__form--fieldset">
+          <legend>Góp ý:</legend>
+          <table class="feedback__form--table">
+            <tr class="feedback__name">
+              <td>Họ và tên:</td>
+              <td><input type="text" placeholder="Nguyễn Văn A"></td>
+            </tr>
+            <tr class="feedback__email">
+              <td>Email:</td>
+              <td><input type="email" placeholder="example@gmail.com"></td>
+            </tr>
+            <tr class="feedback__content">
+              <td>Nội dung:</td>
+              <td><input type="text" placeholder="..."></td>
+            </tr>
+            <tr class="feedback__button">
+              <td></td>
+              <td>
+                <button type="submit" class="feedback__button-submit">Gửi</button>
+                <button type="reset" class="feedback__button-reset">Hoàn tác</button>
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+      </form>
+    </div>
+  </footer>
+</body>
+
+</html>

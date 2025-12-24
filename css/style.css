@@ -1,61 +1,76 @@
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
-body{
+
+body {
     margin: 0;
     padding: 0;
     background-color: #FFF5F7;
     color: #5D4037;
     font-family: 'Nunito', sans-serif;
 }
+
 /* header */
-.site-header{
+.site-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     font-size: 40px;
     background-color: #FFDEE9;
     background-image: linear-gradient(to bottom, #accbee 0%, #e7f0fd 50%, #FFDEE9 100%);
-    height: auto; 
+    height: auto;
     padding: 10px 20px 10px 20px;
     border-radius: 0px 0px 40px 40px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
-.main-nav__list{
+
+.main-nav__list {
     display: flex;
     gap: 60px;
     list-style: none;
     margin: 0;
     padding: 0;
 }
-.main-nav__item{
+
+.main-nav__item {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0;  
+    padding: 0;
 }
+
 .main-nav__box-link {
     background-color: #fdeafd;
     border-radius: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px; 
-    
-    width: 80%; 
+    gap: 15px;
+
+    width: 80%;
     height: 30px;
-    padding: 5px 25px; 
-    
+    padding: 5px 25px;
+
     text-decoration: none;
     color: #FF69B4;
     font-weight: bold;
     font-size: 25px;
+    transition: transform 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+
+.main-nav__box-link:hover {
+    background-color: #FF69B4;
+    color: white;
+    transform: translateY(5px);
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
 }
 /* Tên và ảnh logo */
-.site-logo{
+.site-logo {
     padding: 0;
     color: #a1026c;
     display: flex;
@@ -63,82 +78,173 @@ body{
     justify-content: center;
     align-items: center;
 }
-.site-logo__image{
+
+.site-logo__image {
     width: 200px;
     height: 200px;
     margin: 30px;
     object-fit: cover;
     border-radius: 50%;
 }
+
 /* Chỉnh thanh điều hướng */
-.main-nav__item--home img{
+.main-nav__item--home img {
     width: 40px;
     height: auto;
     margin-right: -10px;
     padding-bottom: 9px;
 }
-.main-nav__item--video img{
+
+.main-nav__item--video img {
     width: 30px;
     height: auto;
 }
-.main-nav__item--picture img{
+
+.main-nav__item--picture img {
     width: 28px;
     height: auto;
 }
-.video-section__title, .anime-picture-section__title{
+
+.main-nav__item--canvas img {
+    width: 30px;
+    height: auto;
+}
+
+.video-section__title, .anime-picture-section__title {
     font-size: 50px;
     margin: 0px 0px 0px 30px;
 }
+
 /* main content */
 /* Chỉnh khoảng cách các phần */
-.main-content{
+.main-content {
     margin-top: 60px;
-}
-.video-section{
-    margin-bottom: 60px;
-}
-/* Chỉnh bố cục các nội dung */
-.video-section__list, .anime-picture-section__list{
     display: flex;
-    gap: 100px;
+    flex-direction: column;
+    gap: 70px;
+}
+
+.video-section {
+    margin-bottom: 0;
+}
+
+/* Chỉnh bố cục các nội dung */
+.video-section__list, .anime-picture-section__list, .canvas-section__list {
+    display: flex;
+    gap: 30px;
     justify-content: space-between;
     list-style: none;
     padding-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 0;
 }
-.video-section__caption{
+
+.video-section__caption {
     font-size: 30px;
     margin-top: 0px;
     font-weight: bold;
     margin-top: 10px;
 }
-.video-section__player, .anime-picture-section__item img{
+
+.video-section__player, .anime-picture-section__item img {
     width: 100%;
     height: 315px;
     border-radius: 20px;
 }
-.video-section__item{
+
+.video-section__item {
     text-align: center;
     width: 45%;
 }
-.video-section__item, .anime-picture-section__item{
+
+.video-section__item, .anime-picture-section__item {
     background-color: #ffffff;
     padding: 15px;
     border-radius: 15px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+
 }
-.video-section__title, .anime-picture-section__title{
+
+.video-section__title, .anime-picture-section__title, .canvas-section__title {
     color: #334C66;
     font-size: 35px;
     font-weight: bold;
-    text-decoration: underline #334C66 ;
+    text-decoration: underline #334C66;
 
     padding-bottom: 5px;
     padding-left: 40px;
     margin: 0px;
     height: 50px;
 }
+
+/*Card 3D code*/
+.canvas-section__list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.canvas-section__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: white;
+    width: 300px;
+    padding: 30px 20px;
+
+    border-radius: 25px;
+    border: 3px solid #ffe6f2;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s ease;
+}
+
+.video-section__item:hover, .anime-picture-section__item:hover, .canvas-section__card:hover {
+    transform: translateY(-10px);
+    border-color: #FF69B4;
+    box-shadow: 0 15px 25px rgba(255, 105, 180, 0.3);
+}
+
+.card-icon {
+    font-size: 50px;
+    background: #FFF0F5;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-content h3 {
+    margin: 0 0 10px 0;
+    color: #C2185B;
+    font-size: 22px;
+}
+
+.card-content p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.card-tag {
+    background-color: #FFDEE9;
+    color: #880E4F;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
 /* footer */
-.site-footer{
+.site-footer {
     margin-top: 60px;
     padding: 40px 50px;
     display: flex;
@@ -149,16 +255,20 @@ body{
     border-radius: 40px;
     font-size: 20px;
 }
-.contact-infomation__title{
+
+.contact-infomation__title {
     color: #880E4F;
     border-bottom: 2px dashed #FF69B4;
     padding-bottom: 5px;
-    margin-bottom: 20px;;
+    margin-bottom: 20px;
+    ;
 }
+
 .contact-information_table td {
     padding: 8px 0;
     font-size: 18px;
 }
+
 /* Chỉnh form */
 .feedback__form--fieldset {
     background-color: rgba(255, 219, 241, 0.918);
@@ -166,6 +276,7 @@ body{
     border-radius: 20px;
     padding: 20px;
 }
+
 .feedback__form--fieldset legend {
     background-color: #FF69B4;
     color: white;
@@ -174,58 +285,163 @@ body{
     font-weight: bold;
     text-align: center;
 }
-.feedback__form--table input{
+
+.feedback__form--table input {
     width: 250px;
     padding: 8px 15px;
     margin: 3px 0;
     border: 2px solid #eeaea9;
     border-radius: 15px;
 }
-.feedback__button button{
+
+.feedback__button button {
     margin-top: 10px;
     padding: 8px 20px;
     border-radius: 20px;
     font-weight: bold;
     cursor: pointer;
 }
-.feedback__button-submit{
+
+.feedback__button-submit {
     background-color: #FF69B4;
-    border-color:#FF69B4;
+    border-color: #FF69B4;
     color: white;
 }
-.feedback__button-reset{
+
+.feedback__button-reset {
     background-color: #E0E0E0;
     color: #2b2a2a;
-    border-color:#e4d5d5;
+    border-color: #e4d5d5;
     margin-left: 20px;
 }
+
 /* Chỉnh logo link */
-.logo-link{
+.logo-link {
     display: flex;
     align-items: center;
     gap: 10px;
     align-self: center;
 }
-.logo-link__facebook img{
-    width: 40px; 
+
+.logo-link__facebook img {
+    width: 40px;
     height: 40px;
     object-fit: cover;
-    border-radius: 50%; 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-.logo-link__X img{
+
+.logo-link__X img {
     width: 40px;
     height: 40px;
     object-fit: cover;
     border-radius: 50%;
     background-color: black;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-.logo-link__github img{
+
+.logo-link__github img {
     width: 40px;
     height: 40px;
     object-fit: cover;
     border-radius: 50%;
     background-color: rgb(243, 208, 208);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================
+   GIAO DIỆN ĐIỆN THOẠI (MOBILE)
+   ========================================= */
+@media screen and (max-width: 768px) {
+
+    .site-header {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding-bottom: 20px;
+    }
+
+    .main-nav__list {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 15px;
+        padding: 0;
+    }
+
+    .main-nav__box-link {
+        font-size: 16px;
+        padding: 5px 15px;
+        height: 40px;
+        gap: 8px;
+        width: auto;/
+    }
+
+    .video-section__list,
+    .anime-picture-section__list,
+    .canvas-section__list {
+        flex-direction: column;
+        padding: 0;
+        gap: 30px;
+        margin-top: 20px;
+    }
+
+    .video-section__item,
+    .anime-picture-section__item {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .canvas-section__card {
+        width: 90%;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .site-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        padding: 30px 10px;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .feedback {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .feedback__form--fieldset {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding: 15px;
+    }
+
+    .feedback__form--table,
+    .feedback__form--table tbody,
+    .feedback__form--table tr,
+    .feedback__form--table td {
+        display: block;
+        width: 100%;
+    }
+
+    .feedback__form--table td {
+        text-align: left;
+        padding-bottom: 5px;
+    }
+
+    .feedback__form--table input {
+        width: 100%;
+        box-sizing: border-box;
+        height: 35px;
+    }
+
+    .feedback__button td {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding-top: 10px;
+    }
 }

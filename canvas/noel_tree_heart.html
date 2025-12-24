@@ -2,17 +2,17 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pink Particle Heart Tree</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pink Particle Heart Tree (Mobile Fix)</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            /* Nền màu tối ánh tím hồng huyền ảo */
             background: radial-gradient(ellipse at bottom, #2c001e 0%, #09000a 100%);
             font-family: 'Brush Script MT', 'Lucida Handwriting', cursive, sans-serif;
             height: 100vh;
             user-select: none;
+            touch-action: none; /* Ngăn chặn hành vi cuộn/zoom mặc định của trình duyệt */
         }
         canvas {
             display: block;
@@ -20,25 +20,23 @@
             top: 0;
             left: 0;
             z-index: 1;
-            cursor: grab;
         }
-        canvas:active { cursor: grabbing; }
-
         #message-container {
             position: absolute;
-            bottom: 8%;
+            bottom: 10%;
             width: 100%;
             text-align: center;
             z-index: 10;
             pointer-events: none;
         }
-
         h1 {
-            font-size: 3.5rem;
+            font-size: 3rem; /* Giảm font một chút cho mobile */
             color: #fff0f5; 
             text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff1493;
             opacity: 0;
             transition: opacity 3s ease-in-out;
+            margin: 0;
+            padding: 0 10px;
         }
         h1.show { opacity: 1; }
     </style>
@@ -51,7 +49,6 @@
 
     <script>
         const canvas = document.getElementById('canvas');
-        // Sử dụng alpha: false để tối ưu hiệu suất nếu nền không trong suốt
         const ctx = canvas.getContext('2d', { alpha: false }); 
         const messageElement = document.getElementById('merry-text');
 
@@ -59,21 +56,22 @@
         const particles = [];
         const snowParticles = [];
         
-        // CẤU HÌNH SỐ LƯỢNG HẠT
-        const treeParticleCount = 3500; 
-        const heartParticleCount = 600; // Số hạt tạo nên trái tim
-        const snowCount = 200;
+        // --- CẤU HÌNH ---
+        // Giảm nhẹ số lượng hạt để điện thoại chạy mượt hơn mà không nóng máy
+        const isMobile = window.innerWidth < 768;
+        const treeParticleCount = isMobile ? 2500 : 3500; 
+        const heartParticleCount = isMobile ? 400 : 600; 
+        const snowCount = isMobile ? 100 : 200;
 
         const config = {
-            treeWidth: 350,
-            treeHeight: 650,
+            treeWidth: isMobile ? 280 : 350,
+            treeHeight: isMobile ? 500 : 650,
             layers: 9,
             spinSpeed: 0.005,
             fallChance: 0.002,
-            groundLevel: 350
+            groundLevel: isMobile ? 300 : 350
         };
 
-        // --- BẢNG MÀU TÔNG HỒNG ---
         const treeColors = [
             {r:255,g:182,b:193}, {r:255,g:105,b:180}, 
             {r:255,g:240,b:245}, {r:219,g:112,b:147}
@@ -82,11 +80,8 @@
             {r:255,g:20,b:147}, {r:255,g:255,b:255}, 
             {r:238,g:130,b:238}, {r:183,g:110,b:121}
         ];
-        // Màu riêng cho trái tim (sáng hơn, rực hơn)
         const heartColors = [
-            {r:255,g:255,b:255}, // White
-            {r:255,g:20,b:147},  // Deep Pink
-            {r:255,g:105,b:180}  // Hot Pink
+            {r:255,g:255,b:255}, {r:255,g:20,b:147}, {r:255,g:105,b:180}
         ];
 
         let revealY = 0;
@@ -111,36 +106,62 @@
                 targetTilt = Math.max(-0.5, Math.min(0.5, newTilt));
             }
         }
+        
         canvas.addEventListener('mousedown', e => handleStart(e.clientX, e.clientY));
         window.addEventListener('mousemove', e => handleMove(e.clientX, e.clientY));
         window.addEventListener('mouseup', () => { isDragging = false; });
+        
         canvas.addEventListener('touchstart', e => handleStart(e.touches[0].clientX, e.touches[0].clientY), {passive: false});
-        canvas.addEventListener('touchmove', e => { e.preventDefault(); handleMove(e.touches[0].clientX, e.touches[0].clientY); }, {passive: false});
+        canvas.addEventListener('touchmove', e => { 
+            e.preventDefault(); // Quan trọng: Ngăn kéo trang web trên điện thoại
+            handleMove(e.touches[0].clientX, e.touches[0].clientY); 
+        }, {passive: false});
         canvas.addEventListener('touchend', () => { isDragging = false; });
+        
         canvas.addEventListener('wheel', e => { 
             e.preventDefault(); targetZoom += e.deltaY * -0.001; 
             targetZoom = Math.min(Math.max(0.5, targetZoom), 2.5); 
         }, { passive: false });
 
+        // --- HÀM RESIZE ĐÃ ĐƯỢC SỬA LỖI VỠ HÌNH ---
         function resize() {
-            w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight;
-            config.treeHeight = h * 0.85; config.treeWidth = Math.min(w, h) * 0.52;
+            // Lấy tỉ lệ điểm ảnh của thiết bị (thường là 2 hoặc 3 trên điện thoại)
+            // Giới hạn max là 2 để tối ưu hiệu năng (3x thường quá nặng mà mắt thường khó phân biệt)
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            
+            // Kích thước logic (CSS pixels)
+            w = window.innerWidth;
+            h = window.innerHeight;
+
+            // Kích thước vật lý (Physical pixels)
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+
+            // Đặt kích thước hiển thị CSS
+            canvas.style.width = w + 'px';
+            canvas.style.height = h + 'px';
+
+            // Scale context để mọi nét vẽ tự động to lên theo DPR
+            ctx.scale(dpr, dpr);
+
+            // Cập nhật lại cấu hình cây cho phù hợp màn hình
+            config.treeHeight = h * (isMobile ? 0.75 : 0.85); 
+            config.treeWidth = Math.min(w, h) * (isMobile ? 0.6 : 0.52);
             config.groundLevel = (config.treeHeight / 2) + 20;
             revealY = config.treeHeight / 2 + 150;
+            
             isHeartActive = false; heartTransition = 0;
             isMessageShown = false; messageElement.classList.remove('show');
         }
         window.addEventListener('resize', resize);
-        function lerp(start, end, t) { return start * (1 - t) + end * t; }
 
-        // --- LỚP TUYẾT RƠI ---
         class SnowFlake {
             constructor() { this.reset(true); }
             reset(initial = false) {
                 const treeTop = -config.treeHeight/2 - 150;
                 const treeBottom = config.treeHeight/2 + 100;
                 this.y = initial ? treeTop + Math.random()*(treeBottom-treeTop) : treeTop;
-                this.radius = Math.random() * w * 0.8; // Phân bố rộng hơn
+                this.radius = Math.random() * w * 0.8;
                 this.angle = Math.random()*Math.PI*2;
                 this.speedY = 0.5 + Math.random()*1.5;
                 this.size = 1 + Math.random()*2;
@@ -166,10 +187,9 @@
         }
         function initSnow() { snowParticles.length = 0; for(let i=0; i<snowCount; i++) snowParticles.push(new SnowFlake()); }
 
-        // --- LỚP HẠT TỔNG HỢP (CÂY + TRÁI TIM) ---
         class Particle {
             constructor(type) { 
-                this.type = type; // 'tree', 'ornament', hoặc 'heart'
+                this.type = type; 
                 this.reset(true); 
             }
             reset(initial = false) {
@@ -179,21 +199,15 @@
                 this.isFalling = false; this.isGrounded = false; this.groundLife = 300;
 
                 if (this.type === 'heart') {
-                    // --- TẠO HÌNH TRÁI TIM 3D ---
                     const t = Math.random() * Math.PI * 2;
-                    // Công thức hình trái tim 2D
                     let hx = 16 * Math.pow(Math.sin(t), 3);
                     let hy = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
-                    
-                    // Scale và lấp đầy
-                    const scale = 3.0;
-                    const fill = Math.sqrt(Math.random()); // Phân bố đều hơn
+                    const scale = isMobile ? 2.5 : 3.0; // Tim nhỏ hơn xíu trên mobile
+                    const fill = Math.sqrt(Math.random());
                     hx *= scale * fill;
                     hy *= scale * fill;
-                    // Tạo độ dày (Z) cho trái tim
                     let hz = (Math.random() - 0.5) * 30 * fill;
 
-                    // Vị trí ở đỉnh cây
                     this.lx = hx;
                     this.ly = -config.treeHeight / 2 - 50 + hy;
                     this.lz = hz;
@@ -201,10 +215,9 @@
                     this.color = heartColors[Math.floor(Math.random()*heartColors.length)];
                     this.size = Math.random()*3 + 2;
                     this.targetAlpha = 1.0;
-                    this.fadeSpeed = 0.02; // Hiện nhanh hơn
+                    this.fadeSpeed = 0.02;
 
                 } else {
-                    // --- TẠO HÌNH CÂY THÔNG ---
                     const layerProgress = Math.random();
                     let progressInLayer = this.type === 'ornament' ? 0.7 + Math.random()*0.3 : (layerProgress * config.layers) % 1;
                     let baseR = config.treeWidth * layerProgress * 0.5;
@@ -227,18 +240,14 @@
             }
 
             update(time) {
-                // Logic hiển thị khác nhau cho hạt cây và hạt trái tim
                 let canShow = false;
                 if (this.type === 'heart') {
-                    // Hạt trái tim hiện ra dựa trên biến heartTransition
                     if (heartTransition > 0) {
                         this.alpha = Math.min(this.targetAlpha, this.alpha + this.fadeSpeed);
-                         // Liên kết độ mờ tổng thể với tiến trình xuất hiện trái tim
                         this.alpha *= heartTransition;
                         canShow = true;
                     }
                 } else {
-                    // Hạt cây hiện ra theo revealY (cây mọc lên)
                     const currentAngle = this.angle + time * config.spinSpeed;
                     const spiralOffset = Math.sin(currentAngle * 60);
                     const triggerPoint = revealY + spiralOffset;
@@ -248,11 +257,9 @@
                     }
                 }
 
-                // Logic nhấp nháy (Twinkle)
                 if (!this.isFalling && !this.isGrounded && canShow) {
                     const twinkle = Math.sin(time * this.twinkleSpeed + this.twinkleOffset);
                     if (this.type === 'heart' || this.type === 'ornament') {
-                        // Trái tim và quả châu nhấp nháy mạnh và sáng hơn
                         this.actualAlpha = this.alpha * (0.7 + twinkle * 0.3);
                     } else {
                         this.actualAlpha = this.alpha * (0.8 + twinkle * 0.2);
@@ -261,7 +268,6 @@
                     this.actualAlpha = this.alpha;
                 }
 
-                // Logic rơi rụng (chỉ cho hạt cây)
                 if (this.type !== 'heart') {
                     if (this.isFalling) {
                         this.ly += this.fallSpeed;
@@ -283,12 +289,10 @@
             draw(ctx, cx, cy, rotY, rotX) {
                 if (this.actualAlpha <= 0.01) return;
 
-                // Tính toán vị trí 3D sau khi xoay
                 let tempX = this.lx * Math.cos(rotY) - this.lz * Math.sin(rotY);
                 let tempZ = this.lx * Math.sin(rotY) + this.lz * Math.cos(rotY);
                 let tempY = this.ly;
                 
-                // Xoay thêm một chút cho trái tim để nó sinh động
                 if (this.type === 'heart') {
                     const heartRot = Math.sin(time * 0.03) * 0.2;
                     let tx = tempX; tempX = tx * Math.cos(heartRot) - tempY * Math.sin(heartRot);
@@ -303,18 +307,11 @@
                 
                 const x2d = cx + tempX * scale; const y2d = cy + finalY * scale; let size = this.size * scale;
                 
-                // Vẽ hạt
                 ctx.beginPath(); 
                 ctx.arc(x2d, y2d, size, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.actualAlpha})`; 
-                
-                // Thêm glow nhẹ cho trái tim và quả châu (nếu máy mạnh có thể bật shadowBlur)
-                // ctx.shadowBlur = (this.type === 'heart' ? 10 : 0) * scale;
-                // ctx.shadowColor = "white";
                 ctx.fill();
-                // ctx.shadowBlur = 0;
 
-                // Điểm sáng trắng cho hạt to
                 if (this.type !== 'tree' && size > 3) {
                      ctx.beginPath();
                      ctx.fillStyle = `rgba(255, 255, 255, ${this.actualAlpha * 0.8})`;
@@ -324,7 +321,6 @@
             }
         }
 
-        // --- KHỞI TẠO HẠT ---
         function initParticles() {
             particles.length = 0;
             for (let i = 0; i < treeParticleCount; i++) {
@@ -338,7 +334,6 @@
         let time = 0;
         function animate() {
             time++;
-            // Logic mọc cây và hiện trái tim
             const treeTop = -config.treeHeight / 2;
             if (revealY > treeTop - 50) revealY -= 2.5;
             if (revealY <= treeTop + 50) isHeartActive = true;
@@ -349,24 +344,24 @@
                 }
             }
 
-            // Làm mượt điều khiển
             currentRotationOffset += (targetRotation - currentRotationOffset) * 0.1;
             currentTiltOffset += (targetTilt - currentTiltOffset) * 0.1;
             zoomScale += (targetZoom - zoomScale) * 0.1;
 
-            // Xóa màn hình và vẽ nền gradient
             const gradient = ctx.createRadialGradient(w/2, h, 0, w/2, h, h);
             gradient.addColorStop(0, '#2c001e'); gradient.addColorStop(1, '#09000a');
-            ctx.fillStyle = gradient; ctx.fillRect(0, 0, w, h);
+            ctx.fillStyle = gradient; 
+            // Dùng w, h đã scale trong hàm resize thì không cần nhân tỉ lệ ở đây nữa
+            // Tuy nhiên vì ta scale context, nên tọa độ vẽ là tọa độ logic (CSS pixel)
+            // Cần fillRect theo kích thước logic
+            ctx.fillRect(0, 0, w, h);
 
             const cx = w / 2; const cy = h / 2;
             const rotY = (time * config.spinSpeed) + currentRotationOffset;
             const rotX = currentTiltOffset;
 
-            // Sử dụng 'lighter' để tạo hiệu ứng phát sáng lấp lánh khi các hạt chồng lên nhau
             ctx.globalCompositeOperation = 'lighter'; 
             snowParticles.forEach(snow => { snow.update(); snow.draw(ctx, cx, cy, rotY, rotX); });
-            // Sắp xếp hạt theo chiều sâu (Z) để vẽ đúng thứ tự (hạt xa vẽ trước)
             particles.sort((a, b) => b.lz - a.lz);
             particles.forEach(p => { p.update(time); p.draw(ctx, cx, cy, rotY, rotX); });
             ctx.globalCompositeOperation = 'source-over';
@@ -374,6 +369,7 @@
             requestAnimationFrame(animate);
         }
 
+        // Gọi khởi tạo lần đầu
         resize();
         initSnow();
         initParticles();

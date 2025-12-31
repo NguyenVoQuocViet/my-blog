@@ -27,7 +27,7 @@ body {
 
 .main-nav__list {
     display: flex;
-    gap: 60px;
+    gap: 40px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -58,10 +58,11 @@ body {
     color: #FF69B4;
     font-weight: bold;
     font-size: 25px;
+
+    cursor: pointer;
     transition: transform 0.3s ease;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-
 
 .main-nav__box-link:hover {
     background-color: #FF69B4;
@@ -69,6 +70,12 @@ body {
     transform: translateY(5px);
     box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
 }
+
+.main-nav__box-link:hover img {
+    filter: brightness(0) invert(1);
+    transform: scale(1.1);
+}
+
 /* Tên và ảnh logo */
 .site-logo {
     padding: 0;
@@ -110,6 +117,11 @@ body {
     height: auto;
 }
 
+.main-nav__item--contact img {
+    width: 30px;
+    height: auto;
+}
+
 .video-section__title, .anime-picture-section__title {
     font-size: 50px;
     margin: 0px 0px 0px 30px;
@@ -131,8 +143,9 @@ body {
 /* Chỉnh bố cục các nội dung */
 .video-section__list, .anime-picture-section__list, .canvas-section__list {
     display: flex;
-    gap: 30px;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 35px;
+    justify-content: start;
     list-style: none;
     padding-right: 20px;
     margin-top: 10px;
@@ -163,7 +176,8 @@ body {
     border-radius: 15px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease;
-
+    width: 30%;
+    min-width: 300px;
 }
 
 .video-section__title, .anime-picture-section__title, .canvas-section__title {
@@ -210,6 +224,7 @@ body {
     box-shadow: 0 15px 25px rgba(255, 105, 180, 0.3);
 }
 
+/* Card 3D text*/
 .card-icon {
     font-size: 50px;
     background: #FFF0F5;
@@ -220,6 +235,10 @@ body {
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
+}
+
+.card-content {
+    text-align: center;
 }
 
 .card-content h3 {
@@ -243,6 +262,29 @@ body {
     font-weight: bold;
 }
 
+/* Card happy new year */
+.card-content__happy-new-year h3 {
+    color: rgb(19, 131, 184);
+}
+
+.card-content__happy-new-year span {
+    color: rgb(3, 128, 167);
+    background-color: #def5ff;
+}
+
+.canvas-section__card__happy-new-year {
+    border: 3px solid #e6f7ff;
+}
+
+.canvas-section__card__happy-new-year .card-icon {
+    background: #ebf7ff;
+}
+
+.canvas-section__card__happy-new-year:hover {
+    border-color: #69d0ff;
+    box-shadow: 0 15px 25px rgba(105, 165, 255, 0.3);
+}
+
 /* footer */
 .site-footer {
     margin-top: 60px;
@@ -261,7 +303,6 @@ body {
     border-bottom: 2px dashed #FF69B4;
     padding-bottom: 5px;
     margin-bottom: 20px;
-    ;
 }
 
 .contact-information_table td {
@@ -294,18 +335,29 @@ body {
     border-radius: 15px;
 }
 
+.feedback__form--table input:focus {
+    outline: none;
+    border-color: #FF69B4;
+    box-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
+}
+
 .feedback__button button {
     margin-top: 10px;
     padding: 8px 20px;
     border-radius: 20px;
     font-weight: bold;
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 .feedback__button-submit {
     background-color: #FF69B4;
     border-color: #FF69B4;
     color: white;
+}
+
+.feedback__button-submit:hover {
+    transform: translateY(-3px);
 }
 
 .feedback__button-reset {
@@ -315,12 +367,21 @@ body {
     margin-left: 20px;
 }
 
+.feedback__button-reset:hover {
+    transform: translateY(-3px);
+}
+
 /* Chỉnh logo link */
 .logo-link {
     display: flex;
     align-items: center;
     gap: 10px;
     align-self: center;
+    transition: transform 0.3s ease;
+}
+
+.logo-link img:hover {
+    transform: translateY(-3px);
 }
 
 .logo-link__facebook img {
@@ -345,17 +406,19 @@ body {
     height: 40px;
     object-fit: cover;
     border-radius: 50%;
-    background-color: rgb(243, 208, 208);
+    background-color: rgb(241, 241, 241);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* =========================================
-   GIAO DIỆN ĐIỆN THOẠI (MOBILE)
+   GIAO DIỆN ĐIỆN THOẠI (MOBILE RESPONSIVE)
    ========================================= */
 @media screen and (max-width: 768px) {
 
+    /* 1. HEADER & MENU */
     .site-header {
         flex-direction: column;
+        /* Xếp dọc Logo và Menu */
         align-items: center;
         height: auto;
         padding-bottom: 20px;
@@ -363,6 +426,7 @@ body {
 
     .main-nav__list {
         flex-wrap: wrap;
+        /* Cho phép menu xuống dòng nếu chật */
         gap: 10px;
         justify-content: center;
         margin-top: 15px;
@@ -370,34 +434,56 @@ body {
     }
 
     .main-nav__box-link {
+        width: auto;
+        /* [QUAN TRỌNG] Để nút tự co giãn theo chữ, bỏ 80% cứng */
         font-size: 16px;
+        /* Chữ nhỏ lại chút cho gọn */
         padding: 5px 15px;
         height: 40px;
         gap: 8px;
-        width: auto;/
     }
 
+    .main-nav__box-link img {
+        width: 20px;
+        /* Icon nhỏ lại */
+        height: auto;
+    }
+
+    /* 2. CÁC DANH SÁCH (Video, Ảnh, Canvas) -> XẾP DỌC HẾT */
     .video-section__list,
     .anime-picture-section__list,
     .canvas-section__list {
         flex-direction: column;
+        /* Xếp dọc từ trên xuống */
         padding: 0;
-        gap: 30px;
+        gap: 40px;
+        /* Khoảng cách giữa các phần tử */
         margin-top: 20px;
     }
 
+    /* 3. CÁC KHUNG NỘI DUNG */
     .video-section__item,
-    .anime-picture-section__item {
-        width: 90%;
-        margin: 0 auto;
-    }
-
+    .anime-picture-section__item,
     .canvas-section__card {
+        /* Áp dụng cho cả thẻ Canvas mới */
         width: 90%;
+        /* Chiếm 90% màn hình điện thoại */
         margin: 0 auto;
+        /* Căn giữa */
         box-sizing: border-box;
     }
 
+    /* Căn giữa tiêu đề các phần */
+    .video-section__title,
+    .anime-picture-section__title,
+    .canvas-section__title {
+        text-align: center;
+        padding-left: 0;
+        margin-left: 0;
+        font-size: 30px;
+    }
+
+    /* 4. FOOTER & FORM (Xử lý chống vỡ giao diện) */
     .site-footer {
         flex-direction: column;
         align-items: center;
@@ -405,6 +491,10 @@ body {
         padding: 30px 10px;
         width: 100%;
         overflow: hidden;
+    }
+
+    .contact-infomation {
+        text-align: center;
     }
 
     .feedback {
@@ -419,6 +509,8 @@ body {
         padding: 15px;
     }
 
+    /* [QUAN TRỌNG] Biến bảng thành các khối xếp chồng (Block) */
+    /* Giúp chữ "Họ tên" nằm TRÊN ô input thay vì nằm ngang */
     .feedback__form--table,
     .feedback__form--table tbody,
     .feedback__form--table tr,
@@ -434,14 +526,17 @@ body {
 
     .feedback__form--table input {
         width: 100%;
+        /* Input dài full màn hình */
         box-sizing: border-box;
-        height: 35px;
+        height: 40px;
+        /* Tăng chiều cao để dễ bấm cảm ứng */
     }
 
+    /* Giữ nguyên hàng nút bấm nằm ngang cho đẹp */
     .feedback__button td {
         display: flex;
         justify-content: center;
-        gap: 10px;
-        padding-top: 10px;
+        gap: 15px;
+        padding-top: 15px;
     }
 }

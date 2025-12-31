@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Website của Việt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="icon" href="./image/logo_V.png" type="image/png">
 </head>
@@ -21,33 +22,42 @@
         <li class="main-nav__item main-nav__item--home">
           <a href="#" class="main-nav__box-link">
             <img src="./image/homelogo.png" alt="Trang chủ">
-            <p>Trang chủ</p>
+            <span>Home</span>
           </a>
         </li>
 
         <li class="main-nav__item main-nav__item--video">
           <a href="#video-link" class="main-nav__box-link">
             <img src="./image/videologo.png" alt="Video">
-            <p>Video</p>
+            <span>Video</span>
           </a>
         </li>
 
         <li class="main-nav__item main-nav__item--picture">
           <a href="#picture-link" class="main-nav__box-link">
             <img src="./image/picturelogo.png" alt="Ảnh anime">
-            <p>Ảnh anime</p>
+            <span>Anime</span>
           </a>
         </li>
 
         <li class="main-nav__item main-nav__item--canvas">
           <a href="#canvas-link" class="main-nav__box-link">
             <img src="./image/canvaslogo.png" alt="Canvas">
-            <p>Canvas</p>
+            <span>Canvas</span>
           </a>
         </li>
+
+        <li class="main-nav__item main-nav__item--contact">
+          <a href="#contact-link" class="main-nav__box-link">
+            <img src="./image/contactlogo.png" alt="Contact">
+            <span>Contact</span>
+          </a>
+        </li>
+
       </ul>
     </nav>
   </header>
+
   <main class="main-content">
     <section class="video-section" id="video-link">
       <h1 class="video-section__title">Video </h1>
@@ -68,8 +78,15 @@
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </li>
         <li class="video-section__item">
-          <p class=" video-section__caption">Nợ nhau một lời</p>
+          <p class="video-section__caption">Nợ nhau một lời</p>
           <iframe class="video-section__player" src="https://www.youtube.com/embed/p-O9FGKAMug?si=Csu9xHuruUQQtj6p"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </li>
+        <li class="video-section__item">
+          <p class="video-section__caption">Thiệp hồng sai tên</p>
+          <iframe class="video-section__player" src="https://www.youtube.com/embed/BKPbwVrA-Zo?si=PcNqloATUWBTCVX_"
             title="YouTube video player" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -94,14 +111,26 @@
 
     <section class="canvas-section" id="canvas-link">
       <h1 class="canvas-section__title">Hình vẽ 3D từ code </h1>
+
       <ul class="canvas-section__list">
         <li class="canvas-section__item">
-          <a href="canvas/noel_tree_heart.html" class = "canvas-section__card">
+          <a href="canvas/noel_tree_heart.html" class="canvas-section__card canvas-section__card__noel-heart-tree">
             <div class="card-icon">💖</div>
-            <div class="card-content">
-                <h3>Cây thông Noel</h3>
-                <p>Cây thông Noel với ngàn hạt particles</p>
-                <span class="card-tag">Trái tim bay bay</span>
+            <div class="card-content card-content_noel-heart-tree">
+              <h3>Cây thông Noel</h3>
+              <p>Cây thông Noel với ngàn hạt particles</p>
+              <span class="card-tag">Trái tim bay bay</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="canvas-section__item">
+          <a href="./canvas/happy_new_year_2026.html" class="canvas-section__card canvas-section__card__happy-new-year">
+            <div class="card-icon">🎆</div>
+            <div class="card-content card-content__happy-new-year">
+              <h3>Happy New Year</h3>
+              <p>Chúc mừng năm mới</p>
+              <span class="card-tag">Pháo hoa ngập trời</span>
             </div>
           </a>
         </li>
@@ -109,7 +138,8 @@
 
     </section>
   </main>
-  <footer class="site-footer">
+
+  <footer class="site-footer" id ="contact-link">
     <div class="contact-infomation">
       <h2 class="contact-infomation__title">Thông tin liên hệ:</h2>
       <table class="contact-information_table">
@@ -121,6 +151,7 @@
         </tr>
       </table>
     </div>
+
     <div class="logo-link">
       <a href="https://www.facebook.com/qviet.nv" class="logo-link__facebook">
         <img src="./image/Facebook_Logo_(2019).png" alt="facebook logo">
@@ -132,6 +163,7 @@
         <img src="./image/github-logo.png" alt="github logo">
       </a>
     </div>
+
     <div class="feedback">
       <form action="" class="feedback__form">
         <fieldset class="feedback__form--fieldset">

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Happy New Year 2026 - Desktop Lyrics Only</title>
+    <style>
+        body {
+            margin: 0; padding: 0; overflow: hidden; background: #000;
+            font-family: 'Arial Black', sans-serif; height: 100vh; width: 100vw;
+            display: flex; justify-content: center; align-items: center; touch-action: none;
+        }
+
+        #canvas-container {
+            position: relative; width: 100vw; height: 100vh;
+            display: flex; justify-content: center; align-items: center; overflow: hidden;
+        }
+
+        @media screen and (orientation: portrait) and (max-width: 768px) {
+            #canvas-container {
+                width: 100vh; height: 100vw;
+                position: fixed; top: 50%; left: 50%;
+                transform: translate(-50%, -50%) rotate(90deg);
+                transform-origin: center;
+            }
+            /* ẨN HOÀN TOÀN LỜI NHẠC TRÊN ĐIỆN THOẠI */
+            #lyrics-box {
+                display: none !important;
+            }
+        }
+
+        canvas { display: block; width: 100% !important; height: 100% !important; }
+        
+        #overlay { position: absolute; z-index: 2000; text-align: center; transition: opacity 1s ease; }
+
+        #start-btn {
+            padding: 18px 36px; font-size: 1.3rem; font-weight: bold; color: #ffd700;
+            background: rgba(0,0,0,0.85); border: 3px solid #ffd700; border-radius: 60px;
+            cursor: pointer; box-shadow: 0 0 25px #ffd700; text-transform: uppercase; white-space: nowrap;
+        }
+
+        #message-container {
+            position: absolute; bottom: 12%; width: 100%; text-align: center; z-index: 10; pointer-events: none;
+        }
+
+        h1 {
+            font-size: 1.8rem; color: #fff; text-shadow: 0 0 10px #00ffff, 0 0 20px #8a2be2;
+            opacity: 0; transition: opacity 2s; margin: 0; white-space: nowrap;
+        }
+        h1.show { opacity: 1; }
+
+        #lyrics-box {
+            position: absolute; width: 100%; height: 100%;
+            display: none; justify-content: flex-start; pointer-events: none;
+            z-index: 5; overflow: hidden;
+            -webkit-mask-image: linear-gradient(to top, transparent, black 15%, black 70%, transparent 95%);
+            mask-image: linear-gradient(to top, transparent, black 15%, black 70%, transparent 95%);
+        }
+
+        #lyrics-track {
+            position: absolute; 
+            left: 65%; 
+            width: 32%; 
+            text-align: left;
+            color: #fff9e6;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            font-size: 1.3rem; 
+            line-height: 3; 
+            white-space: pre-line;
+            text-shadow: 0 0 8px #ffd700, 0 0 15px #ff8c00;
+        }
+
+        .run-lyrics {
+            animation: moveUpPC 300s linear forwards;
+        }
+
+        @keyframes moveUpPC {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-580vh); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container">
+        <div id="overlay">
+            <button id="start-btn">🎆 ẤN ĐỂ BẮT ĐẦU NĂM 2026 🎆</button>
+        </div>
+
+        <div id="lyrics-box">
+            <div id="lyrics-track">
+                No more champagne
+                and the fireworks are through.
+                Here we are me and you,
+                feeling lost and feeling blue.
+                It's the end of the party
+                and the morning seems so grey,
+                so unlike yesterday.
+                Now's time for us to say:
+
+                Happy new year! happy new year!
+                May we all have a vision, now and then,
+                of the world where ev'ry neighbor is friend.
+                Happy new year! happy new year!
+                May we all have our hopes our wills to try
+                if we don't we might as well lay down die. You and I...
+
+                Sometimes I see 
+                how the brave new world arrives.
+                And I see how it thrives 
+                in the ashes of our lives.
+                Oh, yes man is fool 
+                and he think he be okay,
+                dragging on feet of clay, 
+                never knowing he's astray
+
+                Seems to me now 
+                that the dreams we had before
+                are all dead nothing more 
+                than confetti on the floor.
+                It's the end of the decade, 
+                in another ten year times
+                who can say what we'll find,
+                that lies waiting down the lines
+
+                Happy new year! happy new year!
+                May we all have a vision, now and then,
+                of the world where ev'ry neighbor is friend.
+                Happy new year! happy new year!
+                May we all have our hopes our wills to try
+                if we don't we might as well lay down die. You and I...
+            </div>
+        </div>
+
+        <div id="message-container"><h1 id="sub-text">HAPPY NEW YEAR 2026</h1></div>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="../music/happynewyear.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d', { alpha: false });
+        const messageElement = document.getElementById('sub-text');
+        const startBtn = document.getElementById('start-btn');
+        const overlay = document.getElementById('overlay');
+        const music = document.getElementById('bg-music');
+        const lyricsBox = document.getElementById('lyrics-box');
+        const lyricsTrack = document.getElementById('lyrics-track');
+
+        let w, h, dpr;
+        let textParticles = [], fireworkParticles = [], rockets = [], digitalRain = [];
+        let time = 0, launchTimer = 0, isStarted = false;
+
+        let mobileTilt = 0; let mobileZoom = 1; let targetTilt = 0; let targetZoom = 1;
+        let lastTouchX = 0; let initialPinchDist = 0;
+
+        const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const textColors = [{r: 255, g: 255, b: 255}, {r: 0, g: 255, b: 255}, {r: 138, g: 43, b: 226}];
+        const fwColors = [{r: 255, g: 50, b: 50}, {r: 50, g: 255, b: 50}, {r: 255, g: 255, b: 255}, {r: 255, g: 165, b: 0}];
+
+        if (isMobileDevice) {
+            canvas.addEventListener('touchstart', e => {
+                if (e.touches.length === 1) lastTouchX = e.touches[0].clientX;
+                else if (e.touches.length === 2) initialPinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+            });
+            canvas.addEventListener('touchmove', e => {
+                if (e.touches.length === 1) {
+                    let dx = e.touches[0].clientX - lastTouchX;
+                    targetTilt = Math.max(-0.26, Math.min(0.26, targetTilt + dx * 0.001));
+                    lastTouchX = e.touches[0].clientX;
+                } else if (e.touches.length === 2) {
+                    let currentDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+                    if (initialPinchDist > 0) targetZoom = Math.max(0.5, Math.min(2.5, targetZoom * (currentDist / initialPinchDist)));
+                    initialPinchDist = currentDist;
+                }
+                e.preventDefault();
+            }, { passive: false });
+        }
+
+        startBtn.addEventListener('click', () => {
+            isStarted = true;
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.style.display = 'none', 1000);
+            
+            // CHỈ KÍCH HOẠT LỜI NHẠC NẾU KHÔNG PHẢI LÀ ĐIỆN THOẠI
+            if (!isMobileDevice) {
+                setTimeout(() => {
+                    lyricsBox.style.display = 'flex';
+                    lyricsTrack.classList.add('run-lyrics');
+                }, 10000); // 10s delay cho PC
+            }
+
+            music.play().catch(() => {});
+            init(); animate();
+        });
+
+        function drawNebula() {
+            const g = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, w);
+            g.addColorStop(0, '#050010'); g.addColorStop(1, '#000');
+            ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+        }
+
+        class CodeDrop {
+            constructor() { this.reset(); this.y = Math.random() * h; }
+            reset() {
+                this.x = Math.random() * w; this.y = -20;
+                this.speed = 1.2 + Math.random() * 2;
+                this.currentChar = ["0", "1", "2", "6"][Math.floor(Math.random() * 4)];
+                this.opacity = 0.1 + Math.random() * 0.3;
+            }
+            update() { this.y += this.speed; if (this.y > h * 0.4) this.reset(); }
+            draw() {
+                ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
+                ctx.font = `14px Courier New`; ctx.fillText(this.currentChar, this.x, this.y);
+            }
+        }
+
+        function getTextPoints() {
+            const offCanvas = document.createElement('canvas');
+            const offCtx = offCanvas.getContext('2d');
+            const fontSize = isMobileDevice ? w * 0.11 : Math.min(w * 0.07, h * 0.14);
+            offCanvas.width = w; offCanvas.height = h;
+            offCtx.fillStyle = 'white'; offCtx.textAlign = 'center'; offCtx.textBaseline = 'middle';
+            offCtx.font = `900 ${fontSize}px "Arial Black", sans-serif`;
+            offCtx.fillText("HAPPY NEW YEAR", w / 2, h / 2 - fontSize * 0.6);
+            offCtx.fillText("2026", w / 2, h / 2 + fontSize * 0.6);
+            const imageData = offCtx.getImageData(0, 0, w, h).data;
+            const points = []; const gap = isMobileDevice ? 4 : 6; 
+            for (let y = 0; y < h; y += gap) {
+                for (let x = 0; x < w; x += gap) {
+                    if (imageData[(y * w + x) * 4] > 128) points.push({ x: x - w/2, y: y - h/2 });
+                }
+            }
+            return points;
+        }
+
+        class TextParticle {
+            constructor(tx, ty) {
+                this.tx = tx; this.ty = ty;
+                this.x = (Math.random() - 0.5) * w; this.y = (Math.random() - 0.5) * h;
+                this.color = textColors[Math.floor(Math.random() * textColors.length)];
+                this.alpha = 0; this.angle = Math.random() * 6.28;
+            }
+            update() {
+                this.x += (this.tx - this.x) * 0.08; this.y += (this.ty - this.y) * 0.08;
+                this.angle += 0.05; if (this.alpha < 1) this.alpha += 0.02;
+            }
+            draw(ctx, cx, cy) {
+                const fx = Math.sin(this.angle) * 1.5; const fy = Math.cos(this.angle) * 1.5;
+                ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.alpha})`;
+                ctx.beginPath(); ctx.arc(cx + this.x + fx, cy + this.y + fy, isMobileDevice ? 2.5 : 3.5, 0, 6.28); ctx.fill();
+            }
+        }
+
+        function init() {
+            dpr = window.devicePixelRatio || 1;
+            const isPortrait = window.innerHeight > window.innerWidth && isMobileDevice;
+            w = isPortrait ? window.innerHeight : window.innerWidth;
+            h = isPortrait ? window.innerWidth : window.innerHeight;
+            canvas.width = w * dpr; canvas.height = h * dpr;
+            ctx.scale(dpr, dpr);
+            const points = getTextPoints();
+            textParticles = points.map(p => new TextParticle(p.x, p.y));
+            fireworkParticles = []; rockets = []; digitalRain = [];
+            for(let i=0; i<(isMobileDevice ? 25 : 50); i++) digitalRain.push(new CodeDrop());
+            setTimeout(() => messageElement.classList.add('show'), 2000);
+        }
+
+        class Rocket {
+            constructor() {
+                this.x = (Math.random() - 0.5) * w * 0.95; this.y = h/2 + 250;
+                this.targetY = isMobileDevice ? (-h * 0.1 - Math.random() * h * 0.2) : (-h * 0.3 - Math.random() * h * 0.35);
+                this.vy = -16; this.dead = false; this.color = fwColors[Math.floor(Math.random() * fwColors.length)];
+            }
+            update() { this.y += this.vy; this.vy += 0.22; if (this.y <= this.targetY || this.vy >= 0) this.dead = true; }
+            draw(ctx, cx, cy) {
+                ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(cx + this.x, cy + this.y, 2.5, 0, 6.28); ctx.fill();
+            }
+        }
+
+        class FireworkParticle {
+            constructor(x, y, color) {
+                this.x = x; this.y = y; this.color = color;
+                const t = Math.random() * 6.28, s = (isMobileDevice ? 3 : 5) + Math.random() * 5;
+                this.vx = Math.cos(t) * s; this.vy = Math.sin(t) * s;
+                this.alpha = 1; this.gravity = 0.15;
+            }
+            update() { this.vy += this.gravity; this.x += this.vx; this.y += this.vy; this.alpha -= 0.02; }
+            draw(ctx, cx, cy) {
+                ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.alpha})`;
+                ctx.beginPath(); ctx.arc(cx + this.x, cy + this.y, 1.5, 0, 6.28); ctx.fill();
+            }
+        }
+
+        function animate() {
+            if (!isStarted) return;
+            time++; launchTimer++;
+            if (isMobileDevice) { mobileTilt += (targetTilt - mobileTilt) * 0.1; mobileZoom += (targetZoom - mobileZoom) * 0.1; }
+            drawNebula();
+            ctx.save();
+            if (isMobileDevice) { ctx.translate(w/2, h/2); ctx.rotate(mobileTilt); ctx.scale(mobileZoom, mobileZoom); ctx.translate(-w/2, -h/2); }
+            digitalRain.forEach(drop => { drop.update(); drop.draw(); });
+            ctx.globalCompositeOperation = 'lighter';
+            const cx = w/2, cy = h/2;
+            textParticles.forEach(p => { p.update(); p.draw(ctx, cx, cy); });
+            if (launchTimer > (isMobileDevice ? 30 : 22)) { rockets.push(new Rocket()); launchTimer = 0; }
+            for (let i = rockets.length - 1; i >= 0; i--) {
+                rockets[i].update(); rockets[i].draw(ctx, cx, cy);
+                if (rockets[i].dead) {
+                    for(let j=0; j<(isMobileDevice ? 50 : 100); j++) fireworkParticles.push(new FireworkParticle(rockets[i].x, rockets[i].y, rockets[i].color));
+                    rockets.splice(i, 1);
+                }
+            }
+            for (let i = fireworkParticles.length - 1; i >= 0; i--) {
+                fireworkParticles[i].update(); fireworkParticles[i].draw(ctx, cx, cy);
+                if (fireworkParticles[i].alpha <= 0) fireworkParticles.splice(i, 1);
+            }
+            ctx.restore();
+            ctx.globalCompositeOperation = 'source-over';
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => { if(isStarted) init(); });
+    </script>
+</body>
+</html>

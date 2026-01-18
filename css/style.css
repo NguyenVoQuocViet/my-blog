@@ -53,6 +53,7 @@ body {
     width: 80%;
     height: 30px;
     padding: 5px 25px;
+    margin-top: 10px;
 
     text-decoration: none;
     color: #FF69B4;
@@ -291,7 +292,7 @@ body {
     padding: 40px 50px;
     display: flex;
     justify-content: space-around;
-    align-items: flex-start;
+    align-items: center;
     background: linear-gradient(to top, #ffede9, #f0d7f0);
     box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
     border-radius: 40px;
@@ -372,145 +373,151 @@ body {
 }
 
 /* Chỉnh logo link */
-.logo-link {
+.logo-link .logo-link__list {
     display: flex;
+    justify-content: center;
     align-items: center;
+    list-style-type: none;
     gap: 10px;
-    align-self: center;
-    transition: transform 0.3s ease;
 }
 
-.logo-link img:hover {
-    transform: translateY(-3px);
+.logo-link__list a {
+    text-decoration: none;
 }
 
-.logo-link__facebook img {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
+.logo-link__list .fa-brands {
+    font-size: 20px;
+    color: white;
+
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.2s ease-in-out;
 }
 
-.logo-link__X img {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 50%;
-    background-color: black;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+.fa-facebook-f {
+    background-color: #3b5998;
 }
 
-.logo-link__github img {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 50%;
-    background-color: rgb(241, 241, 241);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+.fa-facebook-f:hover {
+    transform: translateY(-7px);
 }
+
+.fa-github, .fa-x-twitter {
+    background-color: #333333;
+}
+
+.fa-github:hover, .fa-x-twitter:hover {
+    transform: translateY(-7px);
+}
+
 
 /* =========================================
-   GIAO DIỆN ĐIỆN THOẠI (MOBILE RESPONSIVE)
+   GIAO DIỆN ĐIỆN THOẠI
    ========================================= */
 @media screen and (max-width: 768px) {
 
-    /* 1. HEADER & MENU */
+    /* 1. HEADER */
     .site-header {
         flex-direction: column;
-        /* Xếp dọc Logo và Menu */
         align-items: center;
-        height: auto;
-        padding-bottom: 20px;
+        padding: 15px 10px;
+        font-size: 28px;
     }
 
+    .site-logo__image {
+        width: 100px;  
+        height: 100px;
+        margin: 15px;
+    }
+
+    /* 2. MENU */
     .main-nav__list {
-        flex-wrap: wrap;
-        /* Cho phép menu xuống dòng nếu chật */
-        gap: 10px;
-        justify-content: center;
-        margin-top: 15px;
-        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Chia đều 2 cột */
+        gap: 12px;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .main-nav__item {
+        width: 100%;
     }
 
     .main-nav__box-link {
-        width: auto;
-        /* [QUAN TRỌNG] Để nút tự co giãn theo chữ, bỏ 80% cứng */
+        width: 100%;
         font-size: 16px;
-        /* Chữ nhỏ lại chút cho gọn */
-        padding: 5px 15px;
-        height: 40px;
-        gap: 8px;
+        height: 45px;
+        padding: 5px;
+        justify-content: center;
     }
 
-    .main-nav__box-link img {
-        width: 20px;
-        /* Icon nhỏ lại */
-        height: auto;
+    /* 3. NỘI DUNG CHÍNH */
+    .main-content {
+        margin-top: 30px;
+        gap: 40px;
     }
 
-    /* 2. CÁC DANH SÁCH (Video, Ảnh, Canvas) -> XẾP DỌC HẾT */
     .video-section__list,
     .anime-picture-section__list,
     .canvas-section__list {
+        display: flex;
         flex-direction: column;
-        /* Xếp dọc từ trên xuống */
-        padding: 0;
-        gap: 40px;
-        /* Khoảng cách giữa các phần tử */
-        margin-top: 20px;
+        align-items: center;
+        padding: 0 15px;
+        gap: 25px;
     }
 
-    /* 3. CÁC KHUNG NỘI DUNG */
+    /* Item */
     .video-section__item,
     .anime-picture-section__item,
     .canvas-section__card {
-        /* Áp dụng cho cả thẻ Canvas mới */
-        width: 90%;
-        /* Chiếm 90% màn hình điện thoại */
-        margin: 0 auto;
-        /* Căn giữa */
+        width: 100%;
+        max-width: 400px; /* Không để quá to trên tablet */
+        margin: 0;
         box-sizing: border-box;
     }
 
-    /* Căn giữa tiêu đề các phần */
+    .video-section__player, 
+    .anime-picture-section__item img {
+        height: 200px; /* Thu thấp chiều cao video/ảnh cho vừa mắt điện thoại */
+    }
+
+    .video-section__caption {
+        font-size: 20px;
+    }
+
     .video-section__title,
     .anime-picture-section__title,
     .canvas-section__title {
+        font-size: 26px;
         text-align: center;
         padding-left: 0;
-        margin-left: 0;
-        font-size: 30px;
+        margin-bottom: 10px;
     }
 
-    /* 4. FOOTER & FORM (Xử lý chống vỡ giao diện) */
+    /* 4. FOOTER */
     .site-footer {
         flex-direction: column;
-        align-items: center;
-        gap: 40px;
-        padding: 30px 10px;
-        width: 100%;
-        overflow: hidden;
+        padding: 30px 20px;
+        border-radius: 30px 30px 0 0;
     }
 
-    .contact-infomation {
+    .contact-information_table {
+        width: 100%;
         text-align: center;
     }
 
+    /* Form góp ý */
     .feedback {
         width: 100%;
-        padding: 0 10px;
     }
 
-    .feedback__form--fieldset {
-        width: 100%;
-        min-width: 0;
-        box-sizing: border-box;
-        padding: 15px;
-    }
-
-    /* [QUAN TRỌNG] Biến bảng thành các khối xếp chồng (Block) */
-    /* Giúp chữ "Họ tên" nằm TRÊN ô input thay vì nằm ngang */
     .feedback__form--table,
     .feedback__form--table tbody,
     .feedback__form--table tr,
@@ -519,24 +526,19 @@ body {
         width: 100%;
     }
 
-    .feedback__form--table td {
-        text-align: left;
-        padding-bottom: 5px;
-    }
-
     .feedback__form--table input {
         width: 100%;
-        /* Input dài full màn hình */
-        box-sizing: border-box;
-        height: 40px;
-        /* Tăng chiều cao để dễ bấm cảm ứng */
+        margin-bottom: 10px;
     }
 
-    /* Giữ nguyên hàng nút bấm nằm ngang cho đẹp */
     .feedback__button td {
         display: flex;
-        justify-content: center;
-        gap: 15px;
-        padding-top: 15px;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .feedback__button button {
+        flex: 1; /* Hai nút bấm dài bằng nhau */
+        margin: 0;
     }
 }

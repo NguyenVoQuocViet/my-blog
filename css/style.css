@@ -472,114 +472,174 @@ body {
 
 
 /* =========================================
-   GIAO DIỆN ĐIỆN THOẠI (ĐÃ TỐI ƯU)
+    GIAO DIỆN ĐIỆN THOẠI (FIX CĂN GIỮA TUYỆT ĐỐI)
    ========================================= */
 @media screen and (max-width: 768px) {
 
-    /* 1. HEADER & LOGO */
+    /* 1. Sắp xếp Header theo cột dọc */
     .site-header {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 10px;
-        border-radius: 0 0 30px 30px;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 15px 5px !important; /* Giảm padding ngang để có thêm chỗ cho chữ */
+        gap: 12px !important;
+        height: auto !important;
     }
 
+    /* 2. PHẦN TÊN: ÉP NẰM TRÊN 1 DÒNG TUYỆT ĐỐI */
+    .site-logo {
+        order: 1 !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .site-logo h1, .site-header h2 {
+        /* Hạ cỡ chữ xuống 18px để vừa khít các màn hình nhỏ như iPhone 11/12/13 */
+        font-size: 18px !important; 
+        white-space: nowrap !important; /* Cấm xuống dòng */
+        letter-spacing: -0.5px !important; /* Thu hẹp khoảng cách chữ một chút */
+        text-align: center !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    /* 3. Ảnh đại diện ở giữa */
     .site-logo__image {
-        width: 120px; /* Chỉnh to hơn một chút cho rõ */
-        height: 120px;
-        margin: 10px 0 20px 0;
+        order: 2 !important;
+        width: 120px !important; /* Thu nhỏ ảnh một chút để dành không gian cho các phần khác */
+        height: 120px !important;
+        margin: 10px auto !important;
     }
 
-    /* 2. MENU (Dàn hàng ngang hoặc Grid cân đối) */
+    /* 4. Thanh điều hướng ở dưới cùng - Dàn hàng ngang */
+    .main-nav {
+        order: 3 !important;
+        width: 100% !important;
+    }
+
     .main-nav__list {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* Chia 3 cột cho cân */
-        gap: 10px;
-        width: 100%;
-        padding: 0;
+        display: flex !important;
+        flex-direction: row !important; /* Ép icon nằm ngang */
+        justify-content: center !important;
+        flex-wrap: wrap !important; /* Cho phép xuống hàng nếu icon mở rộng chữ quá dài */
+        gap: 8px !important;
+        padding: 0 !important;
+        margin: 5px 0 0 0 !important;
     }
 
-    /* Riêng Contact và Sandbox cho xuống dòng dưới chiếm diện tích lớn hơn */
-    .main-nav__item--sandbox, 
-    .main-nav__item--contact {
-        grid-column: span 1.5; 
-    }
-
+    /* 5. HIỆU ỨNG HIỆN CHỮ KHI NHẤN */
     .main-nav__box-link {
-        width: 100%;
-        height: 45px;
-        font-size: 14px;
-        border-radius: 15px; /* Bo góc nhẹ cho giống máy tính */
+        width: 42px !important;
+        height: 42px !important;
+        border-radius: 40px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        overflow: hidden !important;
+        background-color: #fdeafd !important;
+        padding: 0 !important;
+    }
+
+    /* Khi chạm/nhấn vào icon trên điện thoại */
+    .main-nav__box-link:hover,
+    .main-nav__box-link:active,
+    .main-nav__box-link:focus {
+        width: 120px !important; /* Mở rộng nút vừa đủ để hiện chữ */
+        justify-content: flex-start !important;
+        padding-left: 12px !important;
+        background-color: #FF69B4 !important;
+        color: white !important;
+    }
+
+    .main-nav__item--picture .main-nav__box-link:hover {
+        width: 130px !important;
+    }
+
+    .main-nav__item--sandbox .main-nav__box-link:hover {
+        width: 150px !important;
+    }
+
+    .main-nav__item--contact .main-nav__box-link:hover {
+        width: 140px !important;
     }
 
     .main-nav__box-link span {
-        display: inline-block; /* Hiện chữ luôn vì mobile không hover được để mở rộng */
-        max-width: 100%;
-        opacity: 1;
-        margin-left: 5px;
-        font-size: 12px;
+        display: block !important;
+        opacity: 0;
+        max-width: 0;
+        font-size: 22px !important;
+        font-weight: bold !important;
+        transition: all 0.3s ease !important;
+        white-space: nowrap !important;
     }
 
-    /* 3. NỘI DUNG CHÍNH */
-    .main-content {
-        margin-top: 30px;
-        gap: 50px;
+    /* Chữ hiện ra khi nhấn */
+    .main-nav__box-link:hover span,
+    .main-nav__box-link:active span,
+    .main-nav__box-link:focus span {
+        opacity: 1 !important;
+        max-width: 70px !important;
     }
 
-    /* Căn giữa tiêu đề các Section */
-    .music-section__title,
-    .anime-section__title,
-    .sandbox-section__title {
-        font-size: 24px;
-        padding: 8px 25px;
-        margin: 20px auto;
+    /* 2. FOOTER: Sửa lỗi lệch và chen chúc */
+    /* Phải ép thẻ cha (footer hoặc .site-footer) xếp theo cột */
+    footer, .site-footer {
+        display: flex !important;
+        flex-direction: column !important; /* Xếp khối Liên hệ và khối Góp ý lên nhau */
+        align-items: center !important;    /* Căn giữa tất cả các khối con */
+        padding: 30px 15px !important;
+        gap: 30px !important;
+        text-align: center !important;
     }
 
-    /* Tối ưu danh sách Anime & Music */
-    .music-section__list,
-    .anime-section__list,
-    .sandbox-section__list {
-        padding: 0 15px;
-        justify-content: center; /* Đảm bảo luôn ra giữa màn hình */
+    /* Căn giữa nội dung bên trong khối Thông tin liên hệ */
+    .footer-nav, .contact-infomation {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
     }
 
-    .music-section__item,
-    .anime-section__item,
-    .sandbox-section__card {
-        width: 100%;
-        max-width: 350px; /* Giới hạn độ rộng để không bị quá to */
+    /* Quan trọng: Xóa padding mặc định của UL để icon mạng xã hội vào giữa */
+    .footer-ul, .logo-link__list {
+        display: flex !important;
+        flex-direction: row !important;    /* Icon vẫn nằm ngang một hàng */
+        justify-content: center !important;
+        padding: 0 !important;             /* Xóa khoảng trắng thừa gây lệch */
+        margin: 15px 0 !important;
+        list-style: none !important;
+        width: 100% !important;
     }
 
-    /* 4. CHỈNH RIÊNG PHẦN TÊN ANIME TRÊN MOBILE */
-    .anime-section__name {
-        font-size: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Căn giữa tên và vạch kẻ */
-        width: 100%;
+    /* 3. FORM GÓP Ý: Đảm bảo không bị tràn */
+    .feedback__form--fieldset {
+        width: 100% !important;
+        max-width: 350px; /* Giới hạn độ rộng để cân đối */
+        box-sizing: border-box;
     }
 
-    .anime-section__name::after {
-        margin: 8px auto 0; /* Đảm bảo vạch hồng luôn ở giữa */
-        width: 60px; /* Trên mobile cho vạch dài hơn một chút để nổi bật */
+    /* Chuyển các dòng trong bảng (nếu có) thành hàng dọc */
+    .feedback__form--table tr, 
+    .contact-information_table tr {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
     }
 
-    /* Hiệu ứng giả lập hover trên Mobile (khi chạm vào) */
-    .anime-section__item:active .anime-section__name {
-        color: #FF69B4;
+    /* 4. ANIME: Kích thước ảnh chuẩn */
+    .anime-section__item img {
+        width: 100% !important;
+        height: 220px !important;
+        object-fit: cover !important;
+        border-radius: 15px;
     }
 
-    .anime-section__item:active .anime-section__name::after {
-        width: 100px;
-    }
-
-    /* 5. FOOTER */
-    .site-footer {
-        padding: 30px 15px;
-        gap: 30px;
-    }
-
-    .feedback__form--table input {
-        width: 100%; /* Input dài hết màn hình điện thoại */
+    .anime-section__item {
+        width: 100% !important;
+        max-width: 320px;
+        margin: 0 auto 20px auto !important;
     }
 }

@@ -244,7 +244,7 @@ body {
 }
 
 .anime-section__item:hover .anime-section__name::after{
-    width: 80px;
+    width: 100px;
 }
 
 /*Card 3D code*/
@@ -472,131 +472,114 @@ body {
 
 
 /* =========================================
-   GIAO DIỆN ĐIỆN THOẠI
+   GIAO DIỆN ĐIỆN THOẠI (ĐÃ TỐI ƯU)
    ========================================= */
 @media screen and (max-width: 768px) {
 
-    /* 1. HEADER */
+    /* 1. HEADER & LOGO */
     .site-header {
         flex-direction: column;
         align-items: center;
-        padding: 15px 10px;
-        font-size: 28px;
+        padding: 20px 10px;
+        border-radius: 0 0 30px 30px;
     }
 
     .site-logo__image {
-        width: 100px;
-        height: 100px;
-        margin: 15px;
+        width: 120px; /* Chỉnh to hơn một chút cho rõ */
+        height: 120px;
+        margin: 10px 0 20px 0;
     }
 
-    /* 2. MENU */
+    /* 2. MENU (Dàn hàng ngang hoặc Grid cân đối) */
     .main-nav__list {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        /* Chia đều 2 cột */
-        gap: 12px;
+        grid-template-columns: repeat(3, 1fr); /* Chia 3 cột cho cân */
+        gap: 10px;
         width: 100%;
-        padding: 10px;
+        padding: 0;
     }
 
-    .main-nav__item {
-        width: 100%;
+    /* Riêng Contact và Sandbox cho xuống dòng dưới chiếm diện tích lớn hơn */
+    .main-nav__item--sandbox, 
+    .main-nav__item--contact {
+        grid-column: span 1.5; 
     }
 
     .main-nav__box-link {
         width: 100%;
-        font-size: 16px;
         height: 45px;
-        padding: 5px;
-        justify-content: center;
+        font-size: 14px;
+        border-radius: 15px; /* Bo góc nhẹ cho giống máy tính */
+    }
+
+    .main-nav__box-link span {
+        display: inline-block; /* Hiện chữ luôn vì mobile không hover được để mở rộng */
+        max-width: 100%;
+        opacity: 1;
+        margin-left: 5px;
+        font-size: 12px;
     }
 
     /* 3. NỘI DUNG CHÍNH */
     .main-content {
         margin-top: 30px;
-        gap: 40px;
+        gap: 50px;
     }
 
+    /* Căn giữa tiêu đề các Section */
+    .music-section__title,
+    .anime-section__title,
+    .sandbox-section__title {
+        font-size: 24px;
+        padding: 8px 25px;
+        margin: 20px auto;
+    }
+
+    /* Tối ưu danh sách Anime & Music */
     .music-section__list,
     .anime-section__list,
     .sandbox-section__list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         padding: 0 15px;
-        gap: 25px;
+        justify-content: center; /* Đảm bảo luôn ra giữa màn hình */
     }
 
-    /* Item */
     .music-section__item,
     .anime-section__item,
     .sandbox-section__card {
         width: 100%;
-        max-width: 400px;
-        /* Không để quá to trên tablet */
-        margin: 0;
-        box-sizing: border-box;
+        max-width: 350px; /* Giới hạn độ rộng để không bị quá to */
     }
 
-    .music-section__player,
-    .anime-section__item img {
-        height: 200px;
-        /* Thu thấp chiều cao music/ảnh cho vừa mắt điện thoại */
-    }
-
-    .music-section__caption {
+    /* 4. CHỈNH RIÊNG PHẦN TÊN ANIME TRÊN MOBILE */
+    .anime-section__name {
         font-size: 20px;
-    }
-
-    .music-section__title,
-    .anime-section__title,
-    .sandbox-section__title {
-        font-size: 26px;
-        text-align: center;
-        padding-left: 0;
-        margin-bottom: 10px;
-    }
-
-    /* 4. FOOTER */
-    .site-footer {
+        display: flex;
         flex-direction: column;
-        padding: 30px 20px;
-        border-radius: 30px 30px 0 0;
-    }
-
-    .contact-information_table {
-        width: 100%;
-        text-align: center;
-    }
-
-    /* Form góp ý */
-    .feedback {
+        align-items: center; /* Căn giữa tên và vạch kẻ */
         width: 100%;
     }
 
-    .feedback__form--table,
-    .feedback__form--table tbody,
-    .feedback__form--table tr,
-    .feedback__form--table td {
-        display: block;
-        width: 100%;
+    .anime-section__name::after {
+        margin: 8px auto 0; /* Đảm bảo vạch hồng luôn ở giữa */
+        width: 60px; /* Trên mobile cho vạch dài hơn một chút để nổi bật */
+    }
+
+    /* Hiệu ứng giả lập hover trên Mobile (khi chạm vào) */
+    .anime-section__item:active .anime-section__name {
+        color: #FF69B4;
+    }
+
+    .anime-section__item:active .anime-section__name::after {
+        width: 100px;
+    }
+
+    /* 5. FOOTER */
+    .site-footer {
+        padding: 30px 15px;
+        gap: 30px;
     }
 
     .feedback__form--table input {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .feedback__button td {
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
-    }
-
-    .feedback__button button {
-        flex: 1;
-        /* Hai nút bấm dài bằng nhau */
-        margin: 0;
+        width: 100%; /* Input dài hết màn hình điện thoại */
     }
 }

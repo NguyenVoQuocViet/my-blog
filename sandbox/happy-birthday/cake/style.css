@@ -27,20 +27,6 @@ body {
 }
 
 /* ============================================== SỐ 20 */
-.number {
-  position: absolute;
-  top: 380px;    /* Cùng độ cao với chân nến */
-  left: 50%;
-  margin-left: 5px; /* Dịch sang phải một chút để cân bằng với nến */
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-weight: 700;
-  font-size: 30px;
-  color: #ffffff; /* Màu đỏ đậm làm điểm nhấn */
-  opacity: 0;
-  /* Hiệu ứng xuất hiện cùng lúc với nến */
-  animation: in 500ms 6s ease-out forwards;
-  z-index: -1;
-}
 
 /* ============================================== Candle (Dịch sang trái) */
 .velas {

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NVQV</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@700&family=Itim&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./css/style.css">
 
@@ -26,42 +26,42 @@
 <body>
   <header class="site-header">
     <div class="site-logo">
-      <b>Nguyễn Võ Quốc Việt</b>
-      <img src="./image/thank_you___anime_city_landscape_by_elffyie_dfwv5g5-pre.jpg" alt="logo cá nhân"
-        class="site-logo__image">
+      <a href="#home">
+        <b>qvietit</b>
+      </a>
     </div>
     <nav class="main-nav">
       <ul class="main-nav__list">
         <li class="main-nav__item main-nav__item--home">
-          <a href="#" class="main-nav__box-link">
+          <a href="#home" class="main-nav__box-link">
             <i class="fa-solid fa-house"></i>
             <span>Home</span>
           </a>
         </li>
 
         <li class="main-nav__item main-nav__item--music">
-          <a href="#music-link" class="main-nav__box-link">
+          <a href="#music" class="main-nav__box-link">
             <i class="fa-solid fa-music"></i>
             <span>Music</span>
           </a>
         </li>
 
         <li class="main-nav__item main-nav__item--picture">
-          <a href="#picture-link" class="main-nav__box-link">
+          <a href="#picture" class="main-nav__box-link">
             <i class="fa-solid fa-image"></i>
             <span>Anime</span>
           </a>
         </li>
 
         <li class="main-nav__item main-nav__item--sandbox">
-          <a href="#sandbox-link" class="main-nav__box-link">
+          <a href="#sandbox" class="main-nav__box-link">
             <i class="fa-solid fa-wand-magic-sparkles"></i>
             <span>Sandbox</span>
           </a>
         </li>
 
         <li class="main-nav__item main-nav__item--contact">
-          <a href="#contact-link" class="main-nav__box-link">
+          <a href="#contact" class="main-nav__box-link">
             <i class="fa-solid fa-phone"></i>
             <span>Contact</span>
           </a>
@@ -72,7 +72,29 @@
   </header>
 
   <main class="main-content">
-    <section class="music-section" id="music-link">
+    <section class="about-me-section" id="home">
+      <div class="left">
+        <img src="./image/avatar.jpg" alt="">
+        <p class="text1">Nguyễn Võ Quốc Việt</p>
+        <p class="text2">16/05/2006</p>
+        <div class="maxim">
+          <p>"I don't know everything,<br>I just know what i know"</p>
+        </div>
+      </div>
+      <div class="right">
+        <p class="text1">Xin chào! Mình là <span>Việt</span></p>
+        <p class="text2">Đây là website của mình, nơi mình đăng vài thứ linh tinh :D</p>
+        <p class="text3">Một vài sở thích:</p>
+        <ul class="text4">
+          <li><i class="fa-solid fa-music"></i>Thổi sáo</li>
+          <li><i class="fa-solid fa-volleyball"></i>Bóng chuyền</li>
+          <li><i class="fa-solid fa-bed"></i>Ngủ</li>
+        </ul>
+      </div>
+      
+    </section>
+
+    <section class="music-section" id="music">
       <h1 class="music-section__title">Music </h1>
       <ul class="music-section__list">
         <li class="music-section__item">
@@ -107,7 +129,7 @@
       </ul>
     </section>
 
-    <section class="anime-section" id="picture-link">
+    <section class="anime-section" id="picture">
       <h1 class="anime-section__title">Anime hay </h1>
       <ul class="anime-section__list">
         <li class="anime-section__item">
@@ -125,23 +147,24 @@
       </ul>
     </section>
 
-    <section class="sandbox-section" id="sandbox-link">
-      <h1 class="sandbox-section__title">Sandbox 3D</h1>
-      
+    <section class="sandbox-section" id="sandbox">
+      <h1 class="sandbox-section__title">Sandbox</h1>
+
       <ul class="sandbox-section__list">
         <li class="sandbox-section__item">
           <a href="sandbox/noel_tree_heart.html" class="sandbox-section__card sandbox-section__card__noel-heart-tree">
             <div class="card-icon">💖</div>
             <div class="card-content card-content_noel-heart-tree">
-              <h3>Cây thông Noel</h3>
-              <p>Cây thông Noel với ngàn hạt particles</p>
+              <h3>Christmas Tree</h3>
+              <p>Cây thông Noel</p>
               <span class="card-tag">Trái tim bay bay</span>
             </div>
           </a>
         </li>
 
         <li class="sandbox-section__item">
-          <a href="./sandbox/happy_new_year_2026.html" class="sandbox-section__card sandbox-section__card__happy-new-year">
+          <a href="./sandbox/happy_new_year_2026.html"
+            class="sandbox-section__card sandbox-section__card__happy-new-year">
             <div class="card-icon">🎆</div>
             <div class="card-content card-content__happy-new-year">
               <h3>Happy New Year</h3>
@@ -150,12 +173,23 @@
             </div>
           </a>
         </li>
+
+        <li class="sandbox-section__item">
+          <a href="./sandbox/happy-birthday/index.html" class="sandbox-section__card sandbox-section__card__happy-birthday">
+            <div class="card-icon">🎂</div>
+            <div class="card-content card-content__happy-birthday">
+              <h3>Happy Birthday</h3>
+              <p>Chúc mừng sinh nhật</p>
+              <span class="card-tag">Nến thồi lung linh</span>
+            </div>
+          </a>
+        </li>
       </ul>
 
     </section>
   </main>
 
-  <footer class="site-footer" id="contact-link">
+  <footer class="site-footer" id="contact">
     <div class="contact-infomation">
       <h2 class="contact-infomation__title">Thông tin liên hệ:</h2>
       <table class="contact-information_table">

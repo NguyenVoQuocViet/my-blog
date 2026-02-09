@@ -11,6 +11,7 @@
     rel="stylesheet">
 
   <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/carousel.js" defer></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
@@ -27,229 +28,277 @@
 
 <body>
   <header class="site-header">
-    <div class="site-logo">
-      <a href="#home">
-        <b>qvietit</b>
-      </a>
+    <div class="container">
+      <div class="site-logo">
+        <a href="#home">
+          <b>qvietit</b>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul class="main-nav__list">
+          <li class="main-nav__item main-nav__item--home">
+            <a href="#home" class="main-nav__box-link">
+              <i class="fa-solid fa-house"></i>
+              <span>Home</span>
+            </a>
+          </li>
+
+          <li class="main-nav__item main-nav__item--music">
+            <a href="#music" class="main-nav__box-link">
+              <i class="fa-solid fa-music"></i>
+              <span>Music</span>
+            </a>
+          </li>
+
+          <li class="main-nav__item main-nav__item--picture">
+            <a href="#picture" class="main-nav__box-link">
+              <i class="fa-solid fa-image"></i>
+              <span>Anime</span>
+            </a>
+          </li>
+
+          <li class="main-nav__item main-nav__item--projects">
+            <a href="#projects" class="main-nav__box-link">
+              <i class="fa-solid fa-folder-open"></i>
+              <span>Projects</span>
+            </a>
+          </li>
+
+          <li class="main-nav__item main-nav__item--sandbox">
+            <a href="#sandbox" class="main-nav__box-link">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>Sandbox</span>
+            </a>
+          </li>
+
+          <li class="main-nav__item main-nav__item--contact">
+            <a href="#contact" class="main-nav__box-link">
+              <i class="fa-solid fa-phone"></i>
+              <span>Contact</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
     </div>
-    <nav class="main-nav">
-      <ul class="main-nav__list">
-        <li class="main-nav__item main-nav__item--home">
-          <a href="#home" class="main-nav__box-link">
-            <i class="fa-solid fa-house"></i>
-            <span>Home</span>
-          </a>
-        </li>
 
-        <li class="main-nav__item main-nav__item--music">
-          <a href="#music" class="main-nav__box-link">
-            <i class="fa-solid fa-music"></i>
-            <span>Music</span>
-          </a>
-        </li>
-
-        <li class="main-nav__item main-nav__item--picture">
-          <a href="#picture" class="main-nav__box-link">
-            <i class="fa-solid fa-image"></i>
-            <span>Anime</span>
-          </a>
-        </li>
-
-        <li class="main-nav__item main-nav__item--sandbox">
-          <a href="#sandbox" class="main-nav__box-link">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-            <span>Sandbox</span>
-          </a>
-        </li>
-
-        <li class="main-nav__item main-nav__item--contact">
-          <a href="#contact" class="main-nav__box-link">
-            <i class="fa-solid fa-phone"></i>
-            <span>Contact</span>
-          </a>
-        </li>
-
-      </ul>
-    </nav>
   </header>
 
   <main class="main-content">
     <section class="about-me-section" id="home">
-      <div class="left">
-        <img src="./image/avatar.jpg" alt="">
-        <p class="text1">Nguyễn Võ Quốc Việt</p>
-        <p class="text2">16/05/2006</p>
-        <div class="maxim">
-          <p>"I don't know everything,<br>I just know what i know"</p>
+      <div class="container">
+        <div class="left">
+          <img src="./image/avatar.jpg" alt="">
+          <p class="text1">Nguyễn Võ Quốc Việt</p>
+          <p class="text2">16/05/2006</p>
+          <div class="maxim">
+            <p>"I don't know everything,<br>I just know what i know"</p>
+          </div>
+        </div>
+        <div class="right">
+          <p class="text1">Xin chào! Mình là <span>Việt</span></p>
+          <p class="text2">Đây là website của mình, nơi mình đăng vài thứ linh tinh :D</p>
+          <p class="text3">Một vài sở thích:</p>
+          <ul class="text4">
+            <li><i class="fa-solid fa-music"></i>Thổi sáo</li>
+            <li><i class="fa-solid fa-volleyball"></i>Bóng chuyền</li>
+            <li><i class="fa-solid fa-bed"></i>Ngủ</li>
+          </ul>
         </div>
       </div>
-      <div class="right">
-        <p class="text1">Xin chào! Mình là <span>Việt</span></p>
-        <p class="text2">Đây là website của mình, nơi mình đăng vài thứ linh tinh :D</p>
-        <p class="text3">Một vài sở thích:</p>
-        <ul class="text4">
-          <li><i class="fa-solid fa-music"></i>Thổi sáo</li>
-          <li><i class="fa-solid fa-volleyball"></i>Bóng chuyền</li>
-          <li><i class="fa-solid fa-bed"></i>Ngủ</li>
-        </ul>
-      </div>
-
     </section>
 
     <section class="music-section" id="music">
-      <h1 class="music-section__title">Music </h1>
-      <ul class="music-section__list">
-        <li class="music-section__item">
-          <p class="music-section__caption">Lữ khách qua thời gian</p>
-          <iframe class="music-section__player" src="https://www.youtube.com/embed/gVyAG3_xtpM?si=pOG36ln6FjMhVj9s"
-            title="YouTube music player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-          </iframe>
-        </li>
-        <li class="music-section__item">
-          <p class="music-section__caption">Lá thư của gió</p>
-          <iframe class="music-section__player" src="https://www.youtube.com/embed/-LYZW0EGav0?si=pQ_y8xrxN59H6l8r"
-            title="YouTube music player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </li>
-        <li class="music-section__item">
-          <p class="music-section__caption">Nợ nhau một lời</p>
-          <iframe class="music-section__player" src="https://www.youtube.com/embed/p-O9FGKAMug?si=Csu9xHuruUQQtj6p"
-            title="YouTube music player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </li>
-        <li class="music-section__item">
-          <p class="music-section__caption">Thiệp hồng sai tên</p>
-          <iframe class="music-section__player" src="https://www.youtube.com/embed/BKPbwVrA-Zo?si=PcNqloATUWBTCVX_"
-            title="YouTube music player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </li>
-        <li class="music-section__item">
-          <p class="music-section__caption">Đường chân trời</p>
-          <iframe class="music-section__player" src="https://www.youtube.com/embed/Rwxt_8gmZLs?si=0uiyy1d-AigXC4L2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </li>
-      </ul>
+      <div class="container">
+        <h2 class="music-section__title">Music </h2>
+        <ul class="music-section__list">
+          <li class="music-section__item">
+            <p class="music-section__caption">Lữ khách qua thời gian</p>
+            <iframe class="music-section__player" src="https://www.youtube.com/embed/gVyAG3_xtpM?si=pOG36ln6FjMhVj9s"
+              title="YouTube music player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+          </li>
+          <li class="music-section__item">
+            <p class="music-section__caption">Lá thư của gió</p>
+            <iframe class="music-section__player" src="https://www.youtube.com/embed/-LYZW0EGav0?si=pQ_y8xrxN59H6l8r"
+              title="YouTube music player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </li>
+          <li class="music-section__item">
+            <p class="music-section__caption">Nợ nhau một lời</p>
+            <iframe class="music-section__player" src="https://www.youtube.com/embed/p-O9FGKAMug?si=Csu9xHuruUQQtj6p"
+              title="YouTube music player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </li>
+          <li class="music-section__item">
+            <p class="music-section__caption">Thiệp hồng sai tên</p>
+            <iframe class="music-section__player" src="https://www.youtube.com/embed/BKPbwVrA-Zo?si=PcNqloATUWBTCVX_"
+              title="YouTube music player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </li>
+          <li class="music-section__item">
+            <p class="music-section__caption">Đường chân trời</p>
+            <iframe class="music-section__player" src="https://www.youtube.com/embed/Rwxt_8gmZLs?si=0uiyy1d-AigXC4L2"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </li>
+        </ul>
+      </div>
     </section>
 
     <section class="anime-section" id="picture">
-      <h1 class="anime-section__title">Anime hay </h1>
-      <ul class="anime-section__list">
-        <li class="anime-section__item">
-          <img src="./image/anh_anime/kato_megumi.png" alt="Kato Megumi">
-          <p class="anime-section__name">Saenai Heroine no Sodatekata</p>
-        </li>
-        <li class="anime-section__item">
-          <img src="./image/anh_anime/konosuba.png" alt="Konosuba">
-          <p class="anime-section__name">Konosuba</p>
-        </li>
-        <li class="anime-section__item">
-          <img src="./image/anh_anime/violet_evergarden.jpg" alt="Violet">
-          <p class="anime-section__name">Violet Evergarden</p>
-        </li>
-      </ul>
+      <div class="container">
+        <h2 class="anime-section__title">Anime hay </h2>
+        <ul class="anime-section__list">
+          <li class="anime-section__item">
+            <img src="./image/anh_anime/kato_megumi.png" alt="Kato Megumi">
+            <p class="anime-section__name">Saenai Heroine no Sodatekata</p>
+          </li>
+          <li class="anime-section__item">
+            <img src="./image/anh_anime/konosuba.png" alt="Konosuba">
+            <p class="anime-section__name">Konosuba</p>
+          </li>
+          <li class="anime-section__item">
+            <img src="./image/anh_anime/violet_evergarden.jpg" alt="Violet">
+            <p class="anime-section__name">Violet Evergarden</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="projects-section" id="projects">
+      <div class="container">
+        <h2 class="projects-section__title">Projects</h2>
+        <div class="carousel-container">
+          <button class="carousel-nav prev" onclick="moveCarousel(-1)">❮</button>
+          <button class="carousel-nav next" onclick="moveCarousel(1)">❯</button>
+
+          <div class="carousel-viewport" id="projects-carousel">
+            <div class="projects-card-wrapper">
+              <div class="projects-card">
+                <div class="projects-card__image-container">
+                  <img src="./image/projects/ITLab01_1.png" alt="Menu game" class="projects-card__image">
+                </div>
+                <div class="projects-card__content">
+                  <h3 class="projects-card__title">IT Lab 01</h3>
+                  <p class="projects-card__description">Game giải đố, kinh dị.</p>
+                  <div class="projects-card__actions">
+                    <a href="https://github.com/NguyenVoQuocViet/ITLap01#-c%C3%A0i-%C4%91%E1%BA%B7t-v%C3%A0-ch%E1%BA%A1y-game" class="projects-btn projects-btn--play" target="_blank">Download</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="sandbox-section" id="sandbox">
-      <h1 class="sandbox-section__title">Sandbox</h1>
+      <div class="container">
+        <h2 class="sandbox-section__title">Sandbox</h2>
+        <ul class="sandbox-section__list">
+          <li class="sandbox-section__item">
+            <a href="sandbox/noel_tree_heart.html" class="sandbox-section__card sandbox-section__card__noel-heart-tree">
+              <div class="card-icon">💖</div>
+              <div class="card-content card-content_noel-heart-tree">
+                <h3>Christmas Tree</h3>
+                <p>Cây thông Noel</p>
+                <span class="card-tag">Trái tim bay bay</span>
+              </div>
+            </a>
+          </li>
 
-      <ul class="sandbox-section__list">
-        <li class="sandbox-section__item">
-          <a href="sandbox/noel_tree_heart.html" class="sandbox-section__card sandbox-section__card__noel-heart-tree">
-            <div class="card-icon">💖</div>
-            <div class="card-content card-content_noel-heart-tree">
-              <h3>Christmas Tree</h3>
-              <p>Cây thông Noel</p>
-              <span class="card-tag">Trái tim bay bay</span>
-            </div>
-          </a>
-        </li>
+          <li class="sandbox-section__item">
+            <a href="./sandbox/happy_new_year_2026.html"
+              class="sandbox-section__card sandbox-section__card__happy-new-year">
+              <div class="card-icon">🎆</div>
+              <div class="card-content card-content__happy-new-year">
+                <h3>Happy New Year</h3>
+                <p>Chúc mừng năm mới</p>
+                <span class="card-tag">Pháo hoa ngập trời</span>
+              </div>
+            </a>
+          </li>
 
-        <li class="sandbox-section__item">
-          <a href="./sandbox/happy_new_year_2026.html"
-            class="sandbox-section__card sandbox-section__card__happy-new-year">
-            <div class="card-icon">🎆</div>
-            <div class="card-content card-content__happy-new-year">
-              <h3>Happy New Year</h3>
-              <p>Chúc mừng năm mới</p>
-              <span class="card-tag">Pháo hoa ngập trời</span>
-            </div>
-          </a>
-        </li>
+          <li class="sandbox-section__item">
+            <a href="./sandbox/happy-birthday/index.html"
+              class="sandbox-section__card sandbox-section__card__happy-birthday">
+              <div class="card-icon">🎂</div>
+              <div class="card-content card-content__happy-birthday">
+                <h3>Happy Birthday</h3>
+                <p>Chúc mừng sinh nhật</p>
+                <span class="card-tag">Nến thổi lung linh</span>
+              </div>
+            </a>
+          </li>
+        </ul>
 
-        <li class="sandbox-section__item">
-          <a href="./sandbox/happy-birthday/index.html"
-            class="sandbox-section__card sandbox-section__card__happy-birthday">
-            <div class="card-icon">🎂</div>
-            <div class="card-content card-content__happy-birthday">
-              <h3>Happy Birthday</h3>
-              <p>Chúc mừng sinh nhật</p>
-              <span class="card-tag">Nến thổi lung linh</span>
-            </div>
-          </a>
-        </li>
-      </ul>
-
+      </div>
     </section>
   </main>
 
   <footer class="site-footer" id="contact">
-    <div class="contact-infomation">
-      <h2 class="contact-infomation__title">Thông tin liên hệ:</h2>
-      <table class="contact-information_table">
-        <tr class="contac-information__email">
-          <td><i>viet.nvq.66cntt@ntu.edu.vn</i></td>
-        </tr>
-        <tr class="contac-information__phone-number">
-          <td><i>0935802161</i></td>
-        </tr>
-      </table>
-    </div>
+    <div class="container">
+      <div class="contact-infomation">
+        <h2 class="contact-infomation__title">Thông tin liên hệ:</h2>
+        <table class="contact-information_table">
+          <tr class="contac-information__email">
+            <td><i>viet.nvq.66cntt@ntu.edu.vn</i></td>
+          </tr>
+          <tr class="contac-information__phone-number">
+            <td><i>0935802161</i></td>
+          </tr>
+        </table>
+      </div>
 
-    <nav class="logo-link">
-      <ul class="logo-link__list">
-        <li><a href="https://www.facebook.com/qviet.nv">
-            <i class="fa-brands fa-facebook-f"></i>
-          </a></li>
-        <li><a href="https://x.com/QVittee">
-            <i class="fa-brands fa-x-twitter"></i>
-          </a></li>
-        <li><a href="https://github.com/NguyenVoQuocViet/my-blog">
-            <i class="fa-brands fa-github"></i>
-          </a></li>
-      </ul>
-    </nav>
+      <nav class="logo-link">
+        <ul class="logo-link__list">
+          <li><a href="https://www.facebook.com/qviet.nv">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a></li>
+          <li><a href="https://x.com/QVittee">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a></li>
+          <li><a href="https://github.com/NguyenVoQuocViet/my-blog">
+              <i class="fa-brands fa-github"></i>
+            </a></li>
+        </ul>
+      </nav>
 
-    <div class="feedback">
-      <form action="" class="feedback__form">
-        <fieldset class="feedback__form--fieldset">
-          <legend>Góp ý:</legend>
-          <table class="feedback__form--table">
-            <tr class="feedback__name">
-              <td>Họ và tên:</td>
-              <td><input type="text" placeholder="Nguyễn Văn A"></td>
-            </tr>
-            <tr class="feedback__email">
-              <td>Email:</td>
-              <td><input type="email" placeholder="example@gmail.com"></td>
-            </tr>
-            <tr class="feedback__content">
-              <td>Nội dung:</td>
-              <td><input type="text" placeholder="..."></td>
-            </tr>
-            <tr class="feedback__button">
-              <td></td>
-              <td>
-                <button type="submit" class="feedback__button-submit">Gửi</button>
-                <button type="reset" class="feedback__button-reset">Hoàn tác</button>
-              </td>
-            </tr>
-          </table>
-        </fieldset>
-      </form>
+      <div class="feedback">
+        <form action="" class="feedback__form">
+          <fieldset class="feedback__form--fieldset">
+            <legend>Góp ý:</legend>
+            <table class="feedback__form--table">
+              <tr class="feedback__name">
+                <td>Họ và tên:</td>
+                <td><input type="text" placeholder="Nguyễn Văn A"></td>
+              </tr>
+              <tr class="feedback__email">
+                <td>Email:</td>
+                <td><input type="email" placeholder="example@gmail.com"></td>
+              </tr>
+              <tr class="feedback__content">
+                <td>Nội dung:</td>
+                <td><input type="text" placeholder="..."></td>
+              </tr>
+              <tr class="feedback__button">
+                <td></td>
+                <td>
+                  <button type="submit" class="feedback__button-submit">Gửi</button>
+                  <button type="reset" class="feedback__button-reset">Hoàn tác</button>
+                </td>
+              </tr>
+            </table>
+          </fieldset>
+        </form>
+      </div>
     </div>
   </footer>
 </body>

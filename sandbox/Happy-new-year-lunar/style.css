@@ -1,0 +1,604 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-red: #feeaea;
+    --color-border-red: #fc6565;
+    --color-card: #faecd3;
+    --color-card-red: #e07979;
+    --card-bg-red-deep: #b30000;
+    --card-bg-beige: #fff5e6;
+    --card-text-gold: #d4af37;
+    --card-text-red: #b30000;
+    --card-text-dark: #333333;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    position: relative;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--color-red);
+    border: 7px solid var(--color-border-red);
+
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url(images/background.jpg) center/cover no-repeat;
+    width: 100%;
+    height: 100%;
+    filter: blur(5px);
+    opacity: 0.5;
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(#ffffff 2px, transparent 2px),
+        linear-gradient(90deg, #ffffff 2px, transparent 2px);
+    background-size: 40px 40px;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+#wrapper {
+    position: relative;
+    background-color: transparent;
+    height: 100vh;
+    background-size: 80px 80px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    z-index: 1;
+    padding-bottom: 20px;
+}
+
+/* cay */
+
+.tree {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+@keyframes treeFromLeft {
+    from {
+        transform: translateX(-500px) translateY(100%);
+    }
+
+    to {
+        transform: translateX(0) translateY(70%);
+    }
+}
+
+@keyframes treeFromTop {
+    from {
+        transform: translateY(-500px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.caydao {
+    transform: translateY(100%) translateX(-500px);
+    animation: treeFromLeft 2s ease-in-out forwards;
+}
+
+.caymai {
+    transform: translateY(-500px);
+    animation: treeFromTop 3s ease-in-out forwards;
+}
+
+.lanterns {
+    position: absolute;
+    top: 0;
+    right: -40%;
+    display: flex;
+    opacity: 0.8;
+    animation: lanternFromTop 4s ease-in-out forwards,
+        lanternGlow 3s 4s ease-in-out infinite;
+    width: 100%;
+}
+
+@keyframes lanternFromTop {
+    from {
+        transform: translateY(-500px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes lanternGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.5)) drop-shadow(0 0 10px rgba(255, 255, 0, 0.3));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.8)) drop-shadow(0 0 25px rgba(253, 253, 6, 0.6)) brightness(1.5);
+    }
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    z-index: -1;
+}
+
+.tet-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 140px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    filter: drop-shadow(3px 4px 10px rgba(0, 0, 0, 0.7));
+    overflow: visible;
+}
+
+.tet-title span {
+    display: inline-block;
+    padding: 0 15px;
+    line-height: 1.3;
+
+    background: linear-gradient(to bottom,
+            #ffffff 0%,
+            #fffa86 20%,
+            #f0c328 60%,
+            #9b7112 85%,
+            #5d4002 100%);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(20px);
+    animation: revealWord 0.8s ease-in-out forwards;
+}
+
+.tet-title span:nth-child(1) {
+    animation-delay: 2s;
+}
+
+.tet-title span:nth-child(2) {
+    animation-delay: 2.5s;
+}
+
+.tet-title span:nth-child(3) {
+    animation-delay: 3s;
+}
+
+.tet-title span:nth-child(4) {
+    animation-delay: 3.5s;
+}
+
+@keyframes revealWord {
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+
+.year {
+    position: absolute;
+    top: 55%;
+    left: 25%;
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(20px);
+    animation: revealYear 0.8s 4s ease-in-out forwards;
+}
+
+@keyframes revealYear {
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+        filter: drop-shadow(3px 4px 10px rgba(0, 0, 0, 0.7));
+    }
+}
+
+.card {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+
+    display: flex;
+    width: 90vw;
+    max-width: 1000px;
+    height: 45vh;
+
+    background-color: transparent;
+    border-radius: 5px;
+    box-shadow: 4px 10px 15px rgba(0, 0, 0, 0.5);
+    border: 10px double var(--card-bg-red-deep);
+
+    overflow: hidden;
+    z-index: -10;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    animation: cardAppear 1.5s ease-in-out 4.5s forwards;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -30%) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -40%) scale(1);
+    }
+}
+
+.card-left, .card-right {
+    flex: 1;
+    padding: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-left {
+    background-color: var(--card-bg-red-deep);
+    color: var(--card-text-gold);
+    align-items: center;
+    justify-content: center;
+    outline: 4px solid var(--card-bg-beige);
+    outline-offset: -7px;
+    position: relative;
+    padding: 20px;
+}
+
+.card-right {
+    background-color: var(--card-bg-beige);
+    color: var(--card-text-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 3px solid var(--card-bg-red-deep);
+    position: relative;
+    padding: 30px;
+}
+
+.circle-container {
+    width: 280px;
+    height: 280px;
+    background-color: var(--card-bg-beige);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 8px double var(--card-text-gold);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+}
+
+.circle-content {
+    text-align: center;
+    color: var(--card-text-red);
+    line-height: 1;
+}
+
+.year-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.at-ty {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+.year-number {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    margin-top: 10px;
+    font-weight: normal;
+}
+
+.card-right {
+    background-color: var(--card-bg-beige);
+    color: var(--card-text-dark);
+    text-align: center;
+}
+
+.card-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    color: var(--card-text-red);
+    margin: 0;
+    font-weight: normal;
+}
+
+.card-body p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.corner-deco {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+
+.top-left {
+    top: 20px;
+    left: 20px;
+    border-top: 3px solid var(--card-text-gold);
+    border-left: 3px solid var(--card-text-gold);
+}
+
+.bottom-right-red {
+    bottom: 15px;
+    right: 15px;
+    border-bottom: 3px solid var(--card-text-red);
+    border-right: 3px solid var(--card-text-red);
+}
+
+.card:hover {
+    box-shadow: 4px 5px 15px rgba(255, 30, 30, 0.5);
+    top: 72%;
+}
+
+.lixi {
+    position: absolute;
+    z-index: 100;
+}
+
+.lixi-bottom-left {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    width: 18%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    pointer-events: none;
+    animation: lixiAppear 2s 5s ease-in-out forwards;
+}
+
+@keyframes lixiAppear {
+    to {
+        opacity: 1;
+    }
+}
+
+.lixi-bottom-left img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    animation: lixiShake 3s infinite ease-in-out;
+    transform-origin: center;
+}
+
+@keyframes lixiShake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    10% {
+        transform: rotate(12deg);
+    }
+
+    20% {
+        transform: rotate(-12deg);
+    }
+
+    30% {
+        transform: rotate(10deg);
+    }
+
+    40% {
+        transform: rotate(-10deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    /* 1. Ép xoay ngang */
+    @media (orientation: portrait) {
+        #wrapper {
+            transform: rotate(90deg);
+            transform-origin: center center;
+            width: 100vh;
+            height: 100vw;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+
+            filter: none !important;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+    }
+
+    /* 2. Thu nhỏ Cây để không che chữ */
+    .caydao, .caymai {
+        width: 25% !important;
+        height: auto !important;
+        opacity: 1;
+    }
+
+    .lanterns {
+        right: 0 !important;
+    }
+
+    /* 3. Tiêu đề Chúc Mừng Năm Mới */
+    .main-content {
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 30px !important;
+        top: 15% !important;
+        z-index: 100;
+    }
+
+    .tet-title {
+        font-size: 50px !important;
+        margin-top: 0 !important;
+        filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.9)) !important;
+    }
+
+    .tet-title::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        background: rgb(253, 247, 159);
+        border-radius: 30px;
+        opacity: 0;
+        animation: Appear 1s 2s ease-in-out forwards;
+    }
+
+    @keyframes Appear {
+        to {
+            opacity: 0.3;
+        }
+    }
+
+    .year {
+
+        margin: 0 !important;
+        top: 50% !important;
+        left: unset !important;
+    }
+
+    .year img {
+        width: 100px !important;
+        filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.8)) !important;
+    }
+
+    /* 4. Tấm thiệp (Card) - Chống che chữ */
+    .card {
+        width: 70% !important;
+        height: 67% !important;
+        top: 58% !important;
+        padding: 5px !important;
+        gap: 5px !important;
+        border-width: 4px !important;
+    }
+
+    .card-left, .card-right {
+        padding: 10px !important;
+        
+        overflow-y: auto !important;   
+        overflow-x: hidden;
+        
+        scrollbar-width: thin;
+    }
+
+    .card-right::-webkit-scrollbar {
+        width: 4px;
+    }
+    .card-right::-webkit-scrollbar-thumb {
+        background: var(--card-text-gold);
+        border-radius: 10px;
+    }
+
+    .circle-container {
+        width: 180px !important;
+        height: 180px !important;
+        border-width: 6px !important;
+    }
+
+    .at-ty, .year-number {
+        font-size: 1.7rem !important;
+    }
+
+    .year-text {
+        font-size: 1.3rem !important;
+        margin-bottom: 5px !important;
+    }
+
+    .year-text img {
+        width: 40px !important;
+    }
+
+    .card-title {
+        font-size: 1.7rem !important;
+        margin-bottom: 5px !important;
+    }
+
+    .card-body p {
+        font-size: 0.8rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 5px !important;
+    }
+
+    .bottom-right-red {
+        display: none;
+    }
+
+    .lixi-bottom-left {
+        width: 100px !important;
+        bottom: 10px !important;
+        right: 10px !important;
+    }
+}
+
+/* 5. Fix riêng cho trường hợp màn hình quá ngắn (Xoay ngang thực tế) */
+@media screen and (max-height: 400px) {
+    .tet-title {
+        display: none;
+    }
+
+    .card {
+        height: 85% !important;
+        top: 50% !important;
+    }
+}

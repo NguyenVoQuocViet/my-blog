@@ -292,29 +292,25 @@ section, footer {
 }
 
 .left img {
-    width: 350px;
-    height: 350px;
+    width: 55%;
+    height: 55%;
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.05);
-
     animation: morph 6s ease-in-out infinite;
 }
 
 @keyframes morph {
     0%, 100% {
         border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-        transform: scale(1);
     }
 
     25% {
         border-radius: 45% 55% 74% 26% / 47% 65% 35% 53%;
-        transform: scale(1.02);
     }
 
     50% {
         border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
-        transform: scale(0.98);
     }
 }
 
@@ -1022,6 +1018,15 @@ section, footer {
 
     .left {
         align-items: center;
+    }
+    
+    .left .text1 {
+        font-size: 1.7rem;
+    }
+
+    .left img {
+        width: 90%;
+        height: auto;
     }
 
     .right {

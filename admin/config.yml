@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: main # Thay bằng tên nhánh của bạn nếu là master
+  branch: main
 
 media_folder: "images"
 public_folder: "/images"
@@ -15,12 +15,12 @@ collections:
       - file: "data/music.json"
         label: "Danh sách Sáo Trúc"
         name: "music_list"
-        fields: # <-- Chỗ này là fields của file music.json
+        fields: # <-- Dòng này giữ nguyên là fields
           - name: "songs"
             label: "Các bài sáo trúc"
-            widget: "list" # <-- Đảm bảo dòng này ĐÚNG cấp độ thụt lề với name và label
+            widget: "list"
             allow_add: true
-            fields: # <-- Đây là các ô nhập liệu bên trong danh sách bài hát
+            fields: # <-- SỬA TỪ "field:" THÀNH "fields:"
               - { label: "Tiêu đề bài nhạc", name: "title", widget: "string" }
               - { label: "Thể loại", name: "category", widget: "string" }
               - {
@@ -32,12 +32,12 @@ collections:
       - file: "data/projects.json"
         label: "Danh sách Dự Án"
         name: "project_list"
-        fields:
+        fields: # <-- Dòng này giữ nguyên là fields
           - name: "projects"
             label: "Các dự án"
             widget: "list"
             allow_add: true
-            fields:
+            fields: # <-- SỬA TỪ "field:" THÀNH "fields:"
               - { label: "Tên dự án", name: "title", widget: "string" }
               - { label: "Phiên bản", name: "version", widget: "string" }
               - { label: "Mô tả", name: "description", widget: "text" }

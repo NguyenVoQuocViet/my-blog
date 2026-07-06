@@ -1,0 +1,12 @@
+{
+  "projects": [
+    {
+      "title": "ITLab01",
+      "version": "v1.0",
+      "description": "IT LAB 01 là một trò chơi nhập vai, giải đố kết hợp yếu tố kinh dị nhẹ, được phát triển trên công cụ Godot Engine 4. Người chơi sẽ vào vai một sinh viên đang học tập, sinh hoạt bình thường tại câu lạc bộ tin học thì gặp phải biến cố Zombies :D.",
+      "tech_stack": "Godot Engine 4",
+      "image_url": "images/projects/ITLab01_1.png",
+      "download_url": "https://github.com/NguyenVoQuocViet/ITLap01"
+    }
+  ]
+}

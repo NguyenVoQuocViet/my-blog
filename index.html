@@ -128,7 +128,8 @@
               <div class="card-body">
                 <i class="bi bi-code-slash fs-3 text-white px-2 py-1 rounded-3"
                   style="background-color: var(--primary-dark-blue);"></i>
-                <h5 class="card-subtitle my-3 d-none d-md-block" style="color: var(--primary-word-blue)">Programming</h5>
+                <h5 class="card-subtitle my-3 d-none d-md-block" style="color: var(--primary-word-blue)">Programming
+                </h5>
               </div>
             </div>
           </div>
@@ -154,12 +155,32 @@
       </div>
     </section>
 
-    <section style="background-color: var(--secondary-background-blue);">
+    <section id="music" style="background-color: var(--secondary-background-blue);" class="py-5">
       <div class="container">
-        <div class="py-5">
-          <div>
-            <p class="fw-semi-bold fs-3 text-center" style="color: var(--primary-word-blue)">Thư viện sáo trúc</p>
+        <div class="text-center mb-5">
+          <p class="fw-semibold fs-3 mb-1" style="color: var(--primary-word-blue)">Thư viện Sáo Trúc</p>
+        </div>
+
+        <div id="musicCarousel" class="carousel slide px-md-5" data-bs-ride="carousel" data-bs-interval="false">
+
+          <div class="carousel-inner" id="music-container">
+            <div class="text-center py-5">
+              <div class="spinner-border text-primary" role="status"></div>
+            </div>
           </div>
+
+          <button class="carousel-control-prev w-auto" type="button" data-bs-target="#musicCarousel"
+            data-bs-slide="prev">
+            <span class="bi bi-chevron-left text-dark fs-1" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+
+          <button class="carousel-control-next w-auto" type="button" data-bs-target="#musicCarousel"
+            data-bs-slide="next">
+            <span class="bi bi-chevron-right text-dark fs-1" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+
         </div>
       </div>
     </section>
@@ -179,19 +200,76 @@
         this.classList.add('active');
       });
     });
+
+    async function loadMusicCarousel() {
+      try {
+        // Fetch file json mà Decap CMS tự động sinh ra
+        const response = await fetch('data/music.json');
+        const data = await response.json();
+        const songs = data.songs || [];
+
+        const musicContainer = document.getElementById('music-container');
+        if (songs.length === 0) {
+          musicContainer.innerHTML = '<p class="text-center text-muted">Chưa có bài hát nào được cập nhật.</p>';
+          return;
+        }
+
+        let carouselHTML = '';
+
+        // Vòng lặp gom nhóm cứ 3 bài hát vào 1 Slide (.carousel-item)
+        for (let i = 0; i < songs.length; i += 3) {
+          // Slide đầu tiên bắt buộc phải có class 'active' thì Bootstrap Carousel mới chạy
+          const isActive = i === 0 ? 'active' : '';
+
+          carouselHTML += `<div class="carousel-item ${isActive}"><div class="row">`;
+
+          // Lấy tối đa 3 bài cho slide hiện tại
+          for (let j = i; j < i + 3 && j < songs.length; j++) {
+            const song = songs[j];
+            carouselHTML += `
+                    <div class="col-md-4 mb-4">
+                        <div class="px-2">
+                            <div class="ratio ratio-16x9 mb-3 shadow-sm rounded-3 overflow-hidden">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/${song.youtube_id}?rel=0" 
+                                    title="${song.title}" 
+                                    allowfullscreen
+                                    loading="lazy">
+                                </iframe>
+                            </div>
+                            <h5 class="fw-bold mb-1 text-truncate text-ocean">${song.title}</h5>
+                            <span class="badge bg-primary-subtle text-primary px-2.5 py-1 small rounded-2">${song.category}</span>
+                        </div>
+                    </div>
+                `;
+          }
+
+          carouselHTML += `</div></div>`;
+        }
+
+        // Đổ toàn bộ HTML vừa dựng vào vùng chứa Carousel
+        musicContainer.innerHTML = carouselHTML;
+
+      } catch (error) {
+        console.error("Lỗi khi đồng bộ dữ liệu sáo trúc:", error);
+      }
+    }
+
+    // Chạy hàm khi trang web tải xong hoàn toàn
+    document.addEventListener('DOMContentLoaded', loadMusicCarousel);
   </script>
   <script>
-  // Tự động chuyển hướng về trang /admin sau khi xác nhận tạo mật khẩu từ mail thành công
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
+    // Tự động chuyển hướng về trang /admin sau khi xác nhận tạo mật khẩu từ mail thành công
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 </body>
 
 </html>

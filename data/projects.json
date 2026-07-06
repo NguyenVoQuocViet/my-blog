@@ -7,6 +7,14 @@
       "tech_stack": "Godot Engine 4",
       "image_url": "images/projects/ITLab01_1.png",
       "download_url": "https://github.com/NguyenVoQuocViet/ITLap01"
+    },
+    {
+      "title": "Mô hình VAC tích hợp IoT",
+      "version": "mô hình",
+      "description": "Thiết kế và triển khai mô hình Vườn – Ao – Chuồng (VAC) thông minh ứng dụng ESP32 và công nghệ IoT ",
+      "tech_stack": "C++, Esp32S3, Thingsboard",
+      "image_url": "images/projects/VAC.png",
+      "download_url": "https://drive.google.com/file/d/11IQmudUauMgePshEf2i3whtQGQLRVrfH/view?usp=drive_link"
     }
   ]
 }

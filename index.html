@@ -228,8 +228,8 @@
             const song = songs[j];
             carouselHTML += `
                     <div class="col-md-4 mb-4">
-                        <div class="px-2">
-                            <div class="ratio ratio-16x9 mb-3 shadow-sm rounded-3 overflow-hidden">
+                        <div class="px-1">
+                            <div class="ratio ratio-16x9 mb-3 shadow rounded-2 overflow-hidden border border-2 border-white">
                                 <iframe 
                                     src="https://www.youtube.com/embed/${song.youtube_id}?rel=0" 
                                     title="${song.title}" 
@@ -237,8 +237,7 @@
                                     loading="lazy">
                                 </iframe>
                             </div>
-                            <h5 class="fw-bold mb-1 text-truncate text-ocean">${song.title}</h5>
-                            <span class="badge bg-primary-subtle text-primary px-2.5 py-1 small rounded-2">${song.category}</span>
+                            <h4 class="fw-semi-bold pb-3 text-truncate text-ocean text-center text-md-start" style="line-height: 2rem;">${song.title}</h4>
                         </div>
                     </div>
                 `;

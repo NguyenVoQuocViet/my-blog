@@ -1,0 +1,44 @@
+backend:
+  name: git-gateway
+  branch: main # Tên nhánh GitHub của bạn (main hoặc master)
+
+media_folder: "images" # Nơi lưu ảnh nếu có (phần dự án)
+public_folder: "/images"
+
+collections:
+  - name: "portfolio_data"
+    label: "Quản lý dữ liệu"
+    delete: false
+    editor:
+      preview: false
+    files:
+      # --- CẤU HÌNH CHO PHẦN THƯ VIỆN SÁO TRÚC ---
+      - file: "data/music.json"
+        label: "Danh sách sáo trúc"
+        name: "music_list"
+        fields:
+          - name: "songs"
+            label: "Các bài sáo trúc"
+            widget: "list"
+            allow_add: true
+            summary: '{{fields.title}}'
+            fields:
+              - { label: "Tiêu đề bài nhạc", name: "title", widget: "string", hint: "Ví dụ: Lữ khách qua thời gian" }
+              - { label: "Thể loại", name: "category", widget: "string", hint: "Ví dụ: Sáo Trúc & Ambient" }
+              - { label: "YouTube Video ID", name: "youtube_id", widget: "string", hint: "Điền mã sau v= (Ví dụ: với link https://www.youtube.com/watch?v=ABC123xyz thì nhập: ABC123xyz)" }
+
+      # --- BẠN CÓ THỂ THÊM PHẦN PROJECTS VÀO ĐÂY SAU NÀY ---
+      - file: "data/projects.json"
+        label: "Danh sách Dự Án"
+        name: "project_list"
+        fields:
+          - name: "projects"
+            label: "Các dự án"
+            widget: "list"
+            fields:
+              - { label: "Tên dự án", name: "title", widget: "string" }
+              - { label: "Phiên bản", name: "version", widget: "string" }
+              - { label: "Mô tả", name: "description", widget: "text" }
+              - { label: "Công nghệ (cách nhau bằng dấu phẩy)", name: "tech_stack", widget: "string" }
+              - { label: "Link ảnh", name: "image_url", widget: "string" }
+              - { label: "Link GitHub/Download", name: "download_url", widget: "string" }

@@ -10,7 +10,7 @@
     },
     {
       "title": "Mô hình VAC tích hợp IoT",
-      "version": "mô hình",
+      "version": "demo",
       "description": "Thiết kế và triển khai mô hình Vườn – Ao – Chuồng (VAC) thông minh ứng dụng ESP32 và công nghệ IoT ",
       "tech_stack": "C++, Esp32S3, Thingsboard",
       "image_url": "images/projects/VAC.png",

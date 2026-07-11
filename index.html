@@ -158,10 +158,10 @@
     <section id="music" style="background-color: var(--secondary-background-blue);" class="py-5">
       <div class="container">
         <div class="text-center mb-5">
-          <p class="fw-semibold fs-3 mb-1" style="color: var(--primary-word-blue)">Thư viện Sáo Trúc</p>
+          <p class="fw-bold display-6 mb-1" style="color: var(--primary-word-blue)">Sáo trúc</p>
         </div>
 
-        <div id="musicCarousel" class="carousel slide px-md-5" data-bs-ride="carousel" data-bs-interval="false">
+        <div id="musicCarousel" class="carousel slide px-md-5" data-bs-interval="false">
 
           <div class="carousel-inner" id="music-container">
             <div class="text-center py-5">
@@ -169,19 +169,103 @@
             </div>
           </div>
 
-          <button class="carousel-control-prev w-auto" type="button" data-bs-target="#musicCarousel"
+          <button class="carousel-control-prev w-auto mb-5 d-none d-md-block" type="button"
+            data-bs-target="#musicCarousel" data-bs-slide="prev">
+            <span class="bi bi-chevron-left text-dark fs-1" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+
+          <button class="carousel-control-next w-auto mb-5 d-none d-md-block" type="button"
+            data-bs-target="#musicCarousel" data-bs-slide="next">
+            <span class="bi bi-chevron-right text-dark fs-1" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="project" class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <p class="fw-bold display-6 mb-1" style="color: var(--primary-word-blue)">Dự án</p>
+        </div>
+
+        <div id="projectCarousel" class="carousel slide px-md-5" data-bs-interval="false">
+
+          <div class="carousel-inner" id="project-container">
+            <div class="text-center py-5">
+              <div class="spinner-border text-primary" role="status"></div>
+            </div>
+          </div>
+
+          <button class="carousel-control-prev w-auto d-none d-md-block" type="button" data-bs-target="#projectCarousel"
             data-bs-slide="prev">
             <span class="bi bi-chevron-left text-dark fs-1" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
 
-          <button class="carousel-control-next w-auto" type="button" data-bs-target="#musicCarousel"
+          <button class="carousel-control-next w-auto d-none d-md-block" type="button" data-bs-target="#projectCarousel"
             data-bs-slide="next">
             <span class="bi bi-chevron-right text-dark fs-1" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
 
         </div>
+      </div>
+    </section>
+
+    <section style="background-color: #0A2540;" class="py-5" id="lab">
+      <div class="container">
+        <p class="mb-0 display-5 text-white fw-bold">Creative Lab</p>
+        <p class="text-white mb-4">Chủ yếu là vibe coding cho vui</p>
+        <div class="row justify-content-center">
+          <div class="col-12 col-xl-10 col-xxl-9">
+            <div class="row g-3">
+
+              <div class="col-6 col-lg-3">
+                <a href="creative-lab/noel_tree_heart.html" class="text-decoration-none h-100 d-block">
+                  <div class="border border-1 border-primary mx-0 mx-lg-3 p-3 rounded-3 text-center h-100"
+                    style="background-color: #16304A;">
+                    <p class="mb-2 fs-1">🎄</p>
+                    <p class="mb-0 text-white fs-5">Christmas Tree</p>
+                  </div>
+                </a>
+              </div>
+
+              <div class="col-6 col-lg-3">
+                <a href="creative-lab/happy_new_year_2026.html" class="text-decoration-none h-100 d-block">
+                  <div class="border border-1 border-primary mx-0 mx-lg-3 p-3 rounded-3 text-center h-100"
+                    style="background-color: #16304A;">
+                    <p class="mb-2 fs-1">🎆</p>
+                    <p class="mb-0 text-white fs-5">Happy New Year</p>
+                  </div>
+                </a>
+              </div>
+
+              <div class="col-6 col-lg-3">
+                <a href="creative-lab/Happy-new-year-lunar/index.html" class="text-decoration-none h-100 d-block">
+                  <div class="border border-1 border-primary mx-0 mx-lg-3 p-3 rounded-3 text-center h-100"
+                    style="background-color: #16304A;">
+                    <p class="mb-2 fs-1">🧧</p>
+                    <p class="mb-0 text-white fs-5">Lunar New Year</p>
+                  </div>
+                </a>
+              </div>
+
+              <div class="col-6 col-lg-3">
+                <a href="creative-lab/happy-birthday/index.html" class="text-decoration-none h-100 d-block">
+                  <div class="border border-1 border-primary mx-0 mx-lg-3 p-3 rounded-3 text-center h-100"
+                    style="background-color: #16304A;">
+                    <p class="mb-2 fs-1">🎂</p>
+                    <p class="mb-0 text-white fs-5">Happy Birthday</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
@@ -192,71 +276,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
-  <script>
-    const navlinks = document.querySelectorAll('.navbar-nav .nav-link');
-    navlinks.forEach(link => {
-      link.addEventListener('click', function () {
-        navlinks.forEach(item => item.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-
-    async function loadMusicCarousel() {
-      try {
-        // Fetch file json mà Decap CMS tự động sinh ra
-        const response = await fetch('data/music.json');
-        const data = await response.json();
-        const songs = data.songs || [];
-
-        const musicContainer = document.getElementById('music-container');
-        if (songs.length === 0) {
-          musicContainer.innerHTML = '<p class="text-center text-muted">Chưa có bài hát nào được cập nhật.</p>';
-          return;
-        }
-
-        let carouselHTML = '';
-
-        // Vòng lặp gom nhóm cứ 3 bài hát vào 1 Slide (.carousel-item)
-        for (let i = 0; i < songs.length; i += 3) {
-          // Slide đầu tiên bắt buộc phải có class 'active' thì Bootstrap Carousel mới chạy
-          const isActive = i === 0 ? 'active' : '';
-
-          carouselHTML += `<div class="carousel-item ${isActive}"><div class="row">`;
-
-          // Lấy tối đa 3 bài cho slide hiện tại
-          for (let j = i; j < i + 3 && j < songs.length; j++) {
-            const song = songs[j];
-            carouselHTML += `
-                    <div class="col-md-4 mb-4">
-                        <div class="px-1">
-                            <div class="ratio ratio-16x9 mb-3 shadow rounded-2 overflow-hidden border border-2 border-white">
-                                <iframe 
-                                    src="https://www.youtube.com/embed/${song.youtube_id}?rel=0" 
-                                    title="${song.title}" 
-                                    allowfullscreen
-                                    loading="lazy">
-                                </iframe>
-                            </div>
-                            <h4 class="fw-semi-bold pb-3 text-truncate text-ocean text-center text-md-start" style="line-height: 2rem;">${song.title}</h4>
-                        </div>
-                    </div>
-                `;
-          }
-
-          carouselHTML += `</div></div>`;
-        }
-
-        // Đổ toàn bộ HTML vừa dựng vào vùng chứa Carousel
-        musicContainer.innerHTML = carouselHTML;
-
-      } catch (error) {
-        console.error("Lỗi khi đồng bộ dữ liệu sáo trúc:", error);
-      }
-    }
-
-    // Chạy hàm khi trang web tải xong hoàn toàn
-    document.addEventListener('DOMContentLoaded', loadMusicCarousel);
-  </script>
+  <script src="js/main.js"></script>
   <script>
     // Tự động chuyển hướng về trang /admin sau khi xác nhận tạo mật khẩu từ mail thành công
     if (window.netlifyIdentity) {

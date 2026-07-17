@@ -15,6 +15,33 @@
       "tech_stack": "C++, Esp32S3, Thingsboard",
       "image_url": "images/projects/VAC.png",
       "download_url": "https://drive.google.com/file/d/11IQmudUauMgePshEf2i3whtQGQLRVrfH/view?usp=drive_link"
+    },
+    {
+      "title": "Website hiển thị ảnh cho quán cà phê",
+      "version": "latest",
+      "description": "Một website dùng để hiển thị và cho phép tải ảnh lên của quán cà phê mèo và capybara",
+      "tech_stack": "HTML, CSS, JavaScript",
+      "image_url": "images/projects/catcapybaracoffee.png",
+      "download_url": "https://github.com/NguyenVoQuocViet/CatAndCapybaraCoffee",
+      "web_url": "https://catcapybaracoffee.pages.dev/"
+    },
+    {
+      "title": "Website về các quán cà phê ở Nha Trang",
+      "version": "latest",
+      "description": "Một website để đánh giá về những quán cà phê ở Nha Trang đã thử trong những năm đại học.",
+      "tech_stack": "TypeScript, JavaScript, CSS",
+      "image_url": "images/projects/ntcoffeereview.png",
+      "download_url": "https://github.com/NguyenVoQuocViet/Nha-Trang-Coffee-Review",
+      "web_url": "https://ntcoffeereview.vercel.app/"
+    },
+    {
+      "title": "Website thuê dịch vụ văn phòng",
+      "version": "latest",
+      "description": "Một website để thuê các dịch vụ như làm powerpoint, word, ... cho sinh viên",
+      "tech_stack": "HTML, CSS, JavaScript",
+      "image_url": "images/projects/baocaogiare.png",
+      "download_url": "https://github.com/NguyenVoQuocViet/baocaogiare",
+      "web_url": "https://baocaogiare.vercel.app/"
     }
   ]
 }

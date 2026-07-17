@@ -13,10 +13,15 @@ document.addEventListener("DOMContentLoaded", function () {
     () => {
       const currentScrollY = window.scrollY;
 
-      // Chỉ ẩn khi cuộn xuống quá 100px để tránh bị giật màn hình ở đỉnh trang
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        header.classList.add("header-hidden");
+      if (window.innerWidth < 768) {
+        // Chỉ ẩn khi cuộn xuống quá 100px để tránh bị giật màn hình ở đỉnh trang
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          header.classList.add("header-hidden");
+        } else {
+          header.classList.remove("header-hidden");
+        }
       } else {
+        // Đảm bảo trên PC, class ẩn luôn bị xóa bỏ để Navbar luôn cố định ở đỉnh
         header.classList.remove("header-hidden");
       }
       lastScrollY = currentScrollY;

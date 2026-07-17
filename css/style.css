@@ -8,6 +8,15 @@
     --secondary-background-blue: #CBDBF5;
 }
 
+a {
+    text-decoration: none;
+    color:  black;
+}
+
+section[id] {
+    scroll-margin-top: 50px;
+}
+
 .nav-link span {
     display: inline-block;
     visibility: hidden;
@@ -28,4 +37,157 @@
 
 .project-img:hover {
     transform: scale(1.1);
+}
+
+.footer-nav a{
+    transition: all 0.3s ease-in-out;
+}
+
+.footer-nav a:hover{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* --- Lab hover --- */
+
+#lab .border-primary {
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    top: 0;
+}
+
+#lab a:hover .border-primary {
+    top: -8px;
+    border-color: var(--primary-light-blue) !important;
+    background-color: #1a3c5d !important;
+    
+    box-shadow: 0 10px 25px rgba(123, 209, 250, 0.25), 
+                0 0 15px rgba(123, 209, 250, 0.15);
+}
+
+#lab .fs-1 {
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+}
+
+#lab a:hover .fs-1 {
+    transform: scale(1.2) rotate(8deg);
+    animation: emojiBounce 0.6s ease-in-out infinite alternate;
+    animation-delay: 0.15s;
+}
+
+@keyframes emojiBounce {
+    0% { transform: scale(1.2) rotate(8deg) translateY(0); }
+    100% { transform: scale(1.2) rotate(8deg) translateY(-4px); }
+}
+
+/* Gitub button hover */
+
+.github {
+    transition: all 0.3s ease-in-out;
+}
+
+.github:hover {
+    transform: scale(1.1);
+}
+
+/* Carousel button */
+
+.custom-carousel-btn {
+    width: 46px;
+    height: 46px;
+    background-color: rgba(255, 255, 255, 0.75); 
+    border: 1px solid var(--secondary-background-blue);
+    border-radius: 50%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-word-blue);
+    font-size: 1.65rem; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(4px);
+    transition: all 0.25s ease-in-out;
+}
+
+.carousel-control-prev:hover .custom-carousel-btn,
+.carousel-control-next:hover .custom-carousel-btn {
+    background-color: var(--primary-dark-blue);
+    color: #ffffff;
+    border-color: var(--primary-dark-blue);
+    transform: scale(1.08);
+    box-shadow: 0 6px 15px rgba(22, 48, 74, 0.25);
+}
+
+.carousel-control-prev {
+    left: -15px !important;
+}
+.carousel-control-next {
+    right: -15px !important;
+}
+
+#music .carousel-control-prev:hover .custom-carousel-btn,
+#music .carousel-control-next:hover .custom-carousel-btn {
+    background-color: var(--primary-semi-dark-blue);
+    border-color: var(--primary-semi-dark-blue);
+    box-shadow: 0 6px 15px rgba(22, 128, 166, 0.3);
+}
+
+/* --- HIỆU ỨNG TỰ ĐỘNG ẨN/HIỆN TOP HEADER --- */
+header.sticky-top {
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+}
+
+/* Class ẩn Header khi cuộn xuống */
+header.header-hidden {
+    transform: translateY(-100%);
+}
+
+/* --- THANH BOTTOM NAV TRÊN MOBILE (GIỐNG ẢNH MẪU) --- */
+.mobile-bottom-nav {
+    background-color: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    z-index: 1030;
+    padding-bottom: env(safe-area-inset-bottom, 8px);
+}
+
+.mobile-nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none !important;
+    color: var(--secondary-grey);
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    width: 60px;
+}
+
+.mobile-nav-link .nav-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 30px;
+    border-radius: 12px;
+    font-size: 1.15rem;
+    margin-bottom: 3px;
+    transition: all 0.2s ease-in-out;
+}
+
+.mobile-nav-link span {
+    transition: color 0.2s ease;
+}
+
+.mobile-nav-link.active .nav-icon-wrapper {
+    background-color: #E3F2FD;
+    color: #0d6efd;
+}
+
+.mobile-nav-link.active span {
+    color: #0d6efd;
+    font-weight: 700;
 }

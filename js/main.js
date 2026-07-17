@@ -1,8 +1,74 @@
-const navlinks = document.querySelectorAll(".navbar-nav .nav-link");
-navlinks.forEach((link) => {
-  link.addEventListener("click", function () {
-    navlinks.forEach((item) => item.classList.remove("active"));
-    this.classList.add("active");
+document.addEventListener("DOMContentLoaded", function () {
+  const header = document.querySelector("header.sticky-top");
+  const navlinks = document.querySelectorAll(
+    ".navbar-nav .nav-link, .mobile-bottom-nav .mobile-nav-link",
+  );
+  const sections = document.querySelectorAll("section[id]");
+
+  // 1. LOGIC ẨN HEADER KHI CUỘN XUỐNG, HIỆN KHI CUỘN LÊN
+  let lastScrollY = window.scrollY;
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const currentScrollY = window.scrollY;
+
+      // Chỉ ẩn khi cuộn xuống quá 100px để tránh bị giật màn hình ở đỉnh trang
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        header.classList.add("header-hidden");
+      } else {
+        header.classList.remove("header-hidden");
+      }
+      lastScrollY = currentScrollY;
+    },
+    { passive: true },
+  );
+
+  // 2. ĐỒNG BỘ HOÁ TRẠNG THÁI ACTIVE TRÊN CẢ 2 THANH NAV
+  const navObserverOptions = {
+    root: null,
+    rootMargin: "-40% 0px -40% 0px", // Nhận diện vùng chính giữa màn hình cực nhạy
+    threshold: 0,
+  };
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const activeId = entry.target.getAttribute("id");
+
+        navlinks.forEach((link) => {
+          const targetHref = link.getAttribute("href");
+          if (targetHref === `#${activeId}`) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      }
+    });
+  }, navObserverOptions);
+
+  sections.forEach((section) => {
+    navObserver.observe(section);
+  });
+
+  // 3. LOGIC CLICK CUỘN MƯỢT CHO CẢ HAI THANH ĐIỀU HƯỚNG
+  navlinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href");
+      const targetSection = document.querySelector(targetId);
+
+      if (targetSection) {
+        const navbarHeight = header.offsetHeight || 70;
+        const targetPosition = targetSection.offsetTop - navbarHeight + 2;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
+      }
+    });
   });
 });
 
@@ -59,7 +125,7 @@ async function loadMusicCarousel() {
   }
 }
 
-// HÀM FETCH VÀ ĐỔ DỮ LIỆU DỰ ÁN (GIAO DIỆN CHUẨN THEO ẢNH MẪU - CHI TIẾT NẰM NGANG)
+// HÀM FETCH VÀ ĐỔ DỮ LIỆU DỰ ÁN (ĐÃ CẬP NHẬT TÍNH NĂNG 2 NÚT BẤM SONG SONG)
 async function loadProjectCarousel() {
   try {
     const response = await fetch("data/projects.json");
@@ -89,6 +155,33 @@ async function loadProjectCarousel() {
           techBadgesHTML += `<span class="badge bg-light text-dark border me-1 mb-1 px-2.5 py-1.5 fw-normal rounded-2">${tech}</span>`;
         }
       });
+
+      // --- PHẦN XỬ LÝ LOGIC 2 NÚT BẤM SONG SONG MỚI ---
+      let actionButtonsHTML = `
+        <a href="${proj.download_url}" target="_blank" class="btn btn-dark text-white flex-grow-1 rounded-2 py-2.5 fw-semibold border-0 shadow-sm transition-all github" style="background-color: #1a1a1a;">
+          <i class="bi bi-github pe-2 fs-5"></i> GitHub
+        </a>
+      `;
+
+      // Kiểm tra xem trường web_url có tồn tại và được nhập dữ liệu hay không
+      if (proj.web_url && proj.web_url.trim() !== "") {
+        actionButtonsHTML = `
+          <div class="d-flex gap-2 w-100">
+            ${actionButtonsHTML}
+            <a href="${proj.web_url}" target="_blank" class="btn text-white flex-grow-1 rounded-2 py-2.5 fw-semibold border-0 shadow-sm transition-all" style="background-color: var(--primary-semi-dark-blue);">
+              <i class="bi bi-globe pe-2 fs-5"></i> Live Web
+            </a>
+          </div>
+        `;
+      } else {
+        // Nếu không có link web, bọc nút GitHub lại để giãn full chiều rộng 100% như cũ
+        actionButtonsHTML = `
+          <a href="${proj.download_url}" target="_blank" class="btn btn-dark text-white w-100 rounded-2 py-2.5 fw-semibold border-0 shadow-sm transition-all github" style="background-color: #1a1a1a;">
+            <i class="bi bi-github pe-2 fs-5"></i> GitHub
+          </a>
+        `;
+      }
+      // ------------------------------------------------
 
       carouselHTML += `
             <div class="carousel-item ${isActive}">
@@ -125,10 +218,9 @@ async function loadProjectCarousel() {
                           </div>
                         </div>
 
+                        <!-- Khu vực nút bấm đã được thay thế động -->
                         <div class="mt-auto">
-                          <a href="${proj.download_url}" target="_blank" class="btn btn-dark text-white w-100 rounded-2 py-2.5 fw-semibold border-0 shadow-sm transition-all" style="background-color: #1a1a1a;">
-                            <i class="bi bi-github pe-2 fs-5"></i> Xem trên GitHub
-                          </a>
+                          ${actionButtonsHTML}
                         </div>
 
                       </div>

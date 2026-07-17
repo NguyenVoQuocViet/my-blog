@@ -28,6 +28,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -36,7 +39,8 @@
     <div class="container">
       <nav class="navbar navbar-expand fw-semibold fs-5" data-bs-theme="dark">
         <div class="container-fluid">
-          <a class="navbar-brand text-white me-0 p-0" href="#">QVietIT</a>
+          <a class="navbar-brand text-white me-0 p-0" href="#"><img src="images/logo.png"
+              style="width:fit-content; max-width: 100px;" alt=""></a>
 
           <div class="" id="navbarNav">
             <ul class="navbar-nav mx-auto gap-md-3 flex-row fs-4 d-none d-md-flex">
@@ -58,7 +62,7 @@
               </li>
             </ul>
           </div>
-          <div>
+          <div id="theme-toggle" style="cursor: pointer;">
             <i class="bi bi-moon-fill text-white"></i>
           </div>
         </div>
@@ -210,7 +214,7 @@
           </div>
 
           <button class="carousel-control-prev w-auto d-none d-md-block mb-5" type="button"
-            data-bs-target="projectcCarousel" data-bs-slide="prev">
+            data-bs-target="#projectCarousel" data-bs-slide="prev">
             <div class="custom-carousel-btn">
               <i class="bi bi-arrow-left-short"></i>
             </div>
@@ -289,10 +293,11 @@
         <div class="col-6 col-md-4">
           <p class="fs-3 fw-bold mb-0 text-center text-lg-start" style="color: var(--primary-word-blue)">qvietit</p>
         </div>
-        <div
-          class="col-6 col-md-4 d-flex gap-4 align-items-center footer-nav d-flex justify-content-center">
-          <a href="https://www.facebook.com/qviet.nv" style="color: var(--primary-word-blue)" target="_blank"><i class="bi bi-facebook fs-3"></i></a>
-          <a href="https://github.com/NguyenVoQuocViet" style="color: var(--primary-word-blue)" target="_blank"><i class="bi bi-github fs-3"></i></a>
+        <div class="col-6 col-md-4 d-flex gap-4 align-items-center footer-nav d-flex justify-content-center">
+          <a href="https://www.facebook.com/qviet.nv" style="color: var(--primary-word-blue)" target="_blank"><i
+              class="bi bi-facebook fs-3"></i></a>
+          <a href="https://github.com/NguyenVoQuocViet" style="color: var(--primary-word-blue)" target="_blank"><i
+              class="bi bi-github fs-3"></i></a>
         </div>
         <div class="col-12 col-md-4 d-flex align-items-center d-flex justify-content-center justify-content-lg-end">
           <p class="fs-6 mb-0">©️2026 Made by Nguyễn Võ Quốc Việt</p>

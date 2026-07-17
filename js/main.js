@@ -108,7 +108,7 @@ async function loadMusicCarousel() {
                         <div class="px-1">
                             <div class="ratio ratio-16x9 mb-3 rounded-2 overflow-hidden border border-2 border-white">
                                 <iframe 
-                                    src="https://www.youtube.com/embed/${song.youtube_id}?rel=0" 
+                                    src="https://www.youtube.com/embed/${song.youtube_id}?autoplay=0&rel=0&showinfo=0&iv_load_policy=3&modestbranding=1" 
                                     title="${song.title}" 
                                     allowfullscreen
                                     loading="lazy">
@@ -173,7 +173,7 @@ async function loadProjectCarousel() {
         actionButtonsHTML = `
           <div class="d-flex gap-2 w-100">
             ${actionButtonsHTML}
-            <a href="${proj.web_url}" target="_blank" class="btn text-white flex-grow-1 rounded-2 py-2.5 fw-semibold border-0 shadow-sm transition-all" style="background-color: var(--primary-semi-dark-blue);">
+            <a href="${proj.web_url}" target="_blank" class="btn text-white flex-grow-1 rounded-2 py-2.5 fw-semibold border-0 shadow-sm transition-all liveweb" style="background-color: var(--primary-semi-dark-blue);">
               <i class="bi bi-globe pe-2 fs-5"></i> Live Web
             </a>
           </div>
@@ -331,5 +331,43 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+// Dark mode
+document.addEventListener("DOMContentLoaded", function () {
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeIcon = themeToggle.querySelector("i");
+  const htmlElement = document.documentElement;
+
+  // 1. Hàm áp dụng theme và đổi icon tương ứng
+  function applyTheme(theme) {
+    htmlElement.setAttribute("data-bs-theme", theme);
+    localStorage.setItem("theme", theme); // Lưu vào bộ nhớ duyệt trình
+
+    if (theme === "dark") {
+      themeIcon.className = "bi bi-sun-fill text-warning"; // Chuyển thành icon ông mặt trời màu vàng
+    } else {
+      themeIcon.className = "bi bi-moon-fill text-white"; // Trở về mặt trăng trắng
+    }
+  }
+
+  // 2. Kiểm tra bộ nhớ trình duyệt xem lúc trước user chọn theme gì
+  const savedTheme = localStorage.getItem("theme");
+  // Nếu có lịch sử chọn thì dùng, chưa có thì check hệ thống máy tính của user đang dùng darkmode không
+  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+  const currentTheme = savedTheme || systemTheme;
+
+  // Áp dụng theme ngay khi tải trang xong
+  applyTheme(currentTheme);
+
+  // 3. Lắng nghe sự kiện click nút để chuyển đổi qua lại
+  themeToggle.addEventListener("click", () => {
+    const nextTheme =
+      htmlElement.getAttribute("data-bs-theme") === "dark" ? "light" : "dark";
+    applyTheme(nextTheme);
+  });
+});
+
 // Chạy hàm khi trang web tải xong hoàn toàn
 document.addEventListener("DOMContentLoaded", loadMusicCarousel);

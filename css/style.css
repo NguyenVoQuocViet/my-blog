@@ -8,9 +8,29 @@
     --secondary-background-blue: #CBDBF5;
 }
 
+[data-bs-theme="dark"] {
+    --neutral-light-grey: #121212;
+    --primary-word-blue: #f8f9fa;
+    --secondary-background-blue: #1e1e1e;
+
+    .bg-white {
+        background-color: #1e1e1e !important;
+        color: #ffffff !important;
+    }
+
+    .card.bg-white {
+        background-color: #1a1a1a !important;
+        border-color: #2d2d2d !important;
+    }
+
+    .text-muted {
+        color: #b0b0b0 !important;
+    }
+}
+
 a {
     text-decoration: none;
-    color:  black;
+    color: black;
 }
 
 section[id] {
@@ -39,11 +59,11 @@ section[id] {
     transform: scale(1.1);
 }
 
-.footer-nav a{
+.footer-nav a {
     transition: all 0.3s ease-in-out;
 }
 
-.footer-nav a:hover{
+.footer-nav a:hover {
     font-size: 1.2rem;
     font-weight: bold;
 }
@@ -60,9 +80,9 @@ section[id] {
     top: -8px;
     border-color: var(--primary-light-blue) !important;
     background-color: #1a3c5d !important;
-    
-    box-shadow: 0 10px 25px rgba(123, 209, 250, 0.25), 
-                0 0 15px rgba(123, 209, 250, 0.15);
+
+    box-shadow: 0 10px 25px rgba(123, 209, 250, 0.25),
+        0 0 15px rgba(123, 209, 250, 0.15);
 }
 
 #lab .fs-1 {
@@ -77,11 +97,16 @@ section[id] {
 }
 
 @keyframes emojiBounce {
-    0% { transform: scale(1.2) rotate(8deg) translateY(0); }
-    100% { transform: scale(1.2) rotate(8deg) translateY(-4px); }
+    0% {
+        transform: scale(1.2) rotate(8deg) translateY(0);
+    }
+
+    100% {
+        transform: scale(1.2) rotate(8deg) translateY(-4px);
+    }
 }
 
-/* Gitub button hover */
+/* Gitub and live web button hover */
 
 .github {
     transition: all 0.3s ease-in-out;
@@ -91,48 +116,72 @@ section[id] {
     transform: scale(1.1);
 }
 
-/* Carousel button */
+.liveweb {
+    transition: all 0.3s ease-in-out;
+}
 
+.liveweb:hover {
+    transform: scale(1.1);
+}
+
+/* Carousel button */
 .custom-carousel-btn {
     width: 46px;
     height: 46px;
-    background-color: rgba(255, 255, 255, 0.75); 
-    border: 1px solid var(--secondary-background-blue);
-    border-radius: 50%; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary-word-blue);
-    font-size: 1.65rem; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    backdrop-filter: blur(4px);
-    transition: all 0.25s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border: 1px solid var(--secondary-background-blue) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--primary-word-blue) !important;
+    font-size: 1.65rem !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08) !important;
+    backdrop-filter: blur(4px) !important;
+    transition: all 0.25s ease-in-out !important;
 }
 
 .carousel-control-prev:hover .custom-carousel-btn,
-.carousel-control-next:hover .custom-carousel-btn {
-    background-color: var(--primary-dark-blue);
-    color: #ffffff;
-    border-color: var(--primary-dark-blue);
-    transform: scale(1.08);
-    box-shadow: 0 6px 15px rgba(22, 48, 74, 0.25);
-}
-
-.carousel-control-prev {
-    left: -15px !important;
-}
-.carousel-control-next {
-    right: -15px !important;
-}
-
+.carousel-control-next:hover .custom-carousel-btn,
 #music .carousel-control-prev:hover .custom-carousel-btn,
 #music .carousel-control-next:hover .custom-carousel-btn {
-    background-color: var(--primary-semi-dark-blue);
-    border-color: var(--primary-semi-dark-blue);
-    box-shadow: 0 6px 15px rgba(22, 128, 166, 0.3);
+    background-color: var(--primary-dark-blue) !important;
+    color: #ffffff !important;
+    border-color: var(--primary-dark-blue) !important;
+    transform: scale(1.08) !important;
+    box-shadow: 0 6px 15px rgba(22, 48, 74, 0.25) !important;
 }
 
-/* --- HIỆU ỨNG TỰ ĐỘNG ẨN/HIỆN TOP HEADER --- */
+.carousel-control-prev { left: -15px !important; }
+.carousel-control-next { right: -15px !important; }
+
+[data-bs-theme="dark"] .custom-carousel-btn {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border-color: rgba(255, 255, 255, 0.9) !important;     
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-bs-theme="dark"] .custom-carousel-btn i {
+    color: #121212 !important; 
+}
+
+[data-bs-theme="dark"] .carousel-control-prev:hover .custom-carousel-btn,
+[data-bs-theme="dark"] .carousel-control-next:hover .custom-carousel-btn,
+[data-bs-theme="dark"] #music .carousel-control-prev:hover .custom-carousel-btn,
+[data-bs-theme="dark"] #music .carousel-control-next:hover .custom-carousel-btn {
+    background-color: var(--primary-light-blue) !important; 
+    border-color: var(--primary-light-blue) !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 6px 20px rgba(123, 209, 250, 0.6) !important;
+}
+
+[data-bs-theme="dark"] .carousel-control-prev:hover .custom-carousel-btn i,
+[data-bs-theme="dark"] .carousel-control-next:hover .custom-carousel-btn i,
+[data-bs-theme="dark"] #music .carousel-control-prev:hover .custom-carousel-btn i,
+[data-bs-theme="dark"] #music .carousel-control-next:hover .custom-carousel-btn i {
+    color: #121212 !important;
+}
+/* HIỆU ỨNG TỰ ĐỘNG ẨN/HIỆN TOP HEADER */
 header.sticky-top {
     transition: transform 0.3s ease-in-out;
     will-change: transform;
